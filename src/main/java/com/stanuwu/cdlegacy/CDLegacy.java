@@ -2,6 +2,8 @@ package com.stanuwu.cdlegacy;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
+import org.slf4j.Logger;
+import org.slf4j.simple.SimpleLoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -10,36 +12,52 @@ import java.util.Objects;
 
 public class CDLegacy {
     public static void main(String[] args) {
+        Logger logger = new SimpleLoggerFactory().getLogger("CDLegacy");
+
         boolean modeDev = false;
         if (args.length > 0) modeDev = Objects.equals(args[0], "dev");
         long devGuild = -1L;
         if (args.length > 1) devGuild = Long.parseLong(args[1]);
 
         if (modeDev) {
-            System.out.println("STARTING IN DEVELOPMENT MODE");
+            logger.warn("STARTING IN DEVELOPMENT MODE");
             if (devGuild == -1L) {
-                System.out.println("INVALID DEV GUILD");
+                logger.error("INVALID DEV GUILD");
                 return;
             }
-            System.out.println("DEV GUILD: " + devGuild);
+            logger.info("DEV GUILD: " + devGuild);
         }
 
-        System.out.println("READING TOKEN");
+        logger.info("READING TOKEN");
         String TOKEN;
         try {
             TOKEN = new String(Files.readAllBytes(Paths.get("data/token.txt")));
         } catch (IOException e) {
-            System.out.println("UNABLE TO READ TOKEN");
+            logger.error("UNABLE TO READ TOKEN");
             return;
         }
 
-        System.out.println("STARTING BOT");
+        logger.info("STARTING BOT");
         JDABuilder b = JDABuilder.createDefault(TOKEN);
         Config.configMemory(b);
         Config.configFeatures(b);
         Config.configActivity(b);
 
+        Features features = new Features();
+        features.registerPre(b);
+
         JDA JDA = b.build();
-        System.out.println("BOT STARTED");
+        try {
+            JDA.awaitReady();
+        } catch (InterruptedException e) {
+            logger.error("BOT STARTUP INTERRUPTED");
+            return;
+        }
+
+        logger.info("BOT STARTED");
+
+        logger.info("REGISTERING FEATURES");
+        features.registerPost(JDA);
+        logger.info("REGISTERED FEATURES");
     }
 }
