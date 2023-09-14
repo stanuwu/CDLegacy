@@ -1,5 +1,6 @@
 package com.stanuwu.cdlegacy;
 
+import com.stanuwu.cdlegacy.db.DB;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import java.util.Objects;
 public class CDLegacy {
     public static void main(String[] args) {
         Logger logger = new SimpleLoggerFactory().getLogger("CDLegacy");
+        DB database = new DB();
 
         boolean modeDev = false;
         if (args.length > 0) modeDev = Objects.equals(args[0], "dev");
@@ -43,7 +45,7 @@ public class CDLegacy {
         Config.configFeatures(b);
         Config.configActivity(b);
 
-        Features features = new Features();
+        Features features = new Features(database);
         features.registerPre(b);
 
         JDA JDA = b.build();
