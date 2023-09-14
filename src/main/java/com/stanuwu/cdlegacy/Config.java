@@ -9,6 +9,15 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 @UtilityClass
 public class Config {
+    public long[] staff = {623984743914012712L};
+
+    public boolean isStaff(long id) {
+        for (long id2 : staff) {
+            if (id == id2) return true;
+        }
+        return false;
+    }
+
     public void configMemory(JDABuilder b) {
         b.disableCache(CacheFlag.VOICE_STATE, CacheFlag.STICKER, CacheFlag.ACTIVITY, CacheFlag.CLIENT_STATUS, CacheFlag.FORUM_TAGS, CacheFlag.MEMBER_OVERRIDES, CacheFlag.SCHEDULED_EVENTS);
         b.setMemberCachePolicy(MemberCachePolicy.ONLINE);

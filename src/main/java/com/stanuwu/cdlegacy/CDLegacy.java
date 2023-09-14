@@ -57,7 +57,7 @@ public class CDLegacy {
         logger.info("BOT STARTED");
 
         logger.info("REGISTERING FEATURES");
-        features.registerPost(JDA);
+        features.registerPost(JDA, modeDev, devGuild);
         logger.info("REGISTERED FEATURES");
     }
 }
