@@ -62,11 +62,60 @@ public class DB {
         return result;
     }
 
+    private void queryError(String query) {
+        logger.error("QUERY " + query + " FAILED");
+    }
+
     public String firstAsString(String query) {
         try {
             return getDBFirst(query).getString(1);
         } catch (SQLException e) {
-            logger.error("QUERY " + query + " FAILED");
+            queryError(query);
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    public int firstAsInt(String query) {
+        try {
+            return getDBFirst(query).getInt(1);
+        } catch (SQLException e) {
+            queryError(query);
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    public long firstAsLong(String query) {
+        try {
+            return getDBFirst(query).getLong(1);
+        } catch (SQLException e) {
+            queryError(query);
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    public boolean firstAsBool(String query) {
+        try {
+            return getDBFirst(query).getBoolean(1);
+        } catch (SQLException e) {
+            queryError(query);
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    public double firstAsDouble(String query) {
+        try {
+            return getDBFirst(query).getDouble(1);
+        } catch (SQLException e) {
+            queryError(query);
+            throw new SQLRuntimeException(e);
+        }
+    }
+
+    public float firstAsFloat(String query) {
+        try {
+            return getDBFirst(query).getFloat(1);
+        } catch (SQLException e) {
+            queryError(query);
             throw new SQLRuntimeException(e);
         }
     }
