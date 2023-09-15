@@ -9,6 +9,7 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 @UtilityClass
 public class Config {
+    public String AVATAR = "https://cdn.discordapp.com/avatars/887247576297013288/ab077ae898cf9ca26c3f035c5ebf15a2.webp?size=1024";
     public long[] staff = {623984743914012712L};
 
     public boolean isStaff(long id) {
