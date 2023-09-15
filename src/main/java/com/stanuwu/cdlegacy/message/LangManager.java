@@ -17,11 +17,13 @@ public class LangManager {
     public String getRaw(String key) {
         return strings.computeIfAbsent(key, f -> {
             try (InputStream stream = LangManager.class.getResourceAsStream("/lang/" + key)) {
-                logger.warn("Lang file missing: " + key);
-                if (stream == null) return key;
+                if (stream == null) {
+                    logger.warn("File missing: " + key);
+                    return key;
+                }
                 return new String(stream.readAllBytes());
             } catch (IOException e) {
-                logger.warn("Lang file missing: " + key);
+                logger.warn("File missing: " + key);
                 return key;
             }
         });
