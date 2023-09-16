@@ -9,6 +9,8 @@ import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 @UtilityClass
 public class Config {
+    public final String TOS = "https://docs.google.com/document/d/1TiKOlQeP6SdrC1n-QIFZHJhYAbhTUdqij0wUWoQ4fUg/edit?usp=sharing";
+    public final String PP = "https://docs.google.com/document/d/1XB37EaNfEdynYvoUPhogNtkYRXF6lBUbGGxkX9uhDe4/edit?usp=sharing";
     public final String AVATAR = "https://cdn.discordapp.com/avatars/887247576297013288/ab077ae898cf9ca26c3f035c5ebf15a2.webp?size=1024";
     public final long[] staff = {623984743914012712L};
 

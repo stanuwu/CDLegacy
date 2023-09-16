@@ -1,5 +1,5 @@
 INSERT INTO items
-VALUE ($1=>?, $2=>?, $3=>?)
+VALUES (:$1, :$2, :$3)
 ON CONFLICT ON CONSTRAIT items_pkey DO UPDATE SET
-    count = $3=>?
+    count = :$3
 ;

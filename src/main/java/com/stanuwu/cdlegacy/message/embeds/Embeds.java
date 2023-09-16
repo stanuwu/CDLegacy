@@ -51,8 +51,12 @@ public class Embeds {
         return defLarge().title(title);
     }
 
+    public static Embeds success(String value) {
+        return defSmall().colorSuccess().title("Success").description(":white_check_mark: " + value);
+    }
+
     public static Embeds error(String error) {
-        return blank().colorError().title("Error").description(error);
+        return defSmall().colorError().title("Error").description(":no_entry_sign: " + error);
     }
 
     public static Embeds langSmall(String key, Placeholder... placeholders) {

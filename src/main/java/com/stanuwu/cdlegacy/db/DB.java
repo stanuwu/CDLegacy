@@ -7,6 +7,9 @@ import com.stanuwu.cdlegacy.game.data.DBInv;
 import com.stanuwu.cdlegacy.game.data.DBUser;
 import org.slf4j.Logger;
 import org.slf4j.simple.SimpleLoggerFactory;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +20,7 @@ import java.util.*;
 
 public class DB {
     private final Logger logger;
-    private final Connection connection;
+    private final DriverManagerDataSource dataSource;
     private final Map<String, String> queries = new HashMap<>();
 
     public DB() {
@@ -33,16 +36,11 @@ public class DB {
         if (info.size() < 5) throw new DBInfoException();
 
         logger.info("CONNECTING TO DB");
-        try {
-            String url = "jdbc:postgresql://%s:%s/%s".formatted(info.get(0), info.get(1), info.get(4));
-            Properties props = new Properties();
-            props.setProperty("user", info.get(2));
-            props.setProperty("password", info.get(3));
-            this.connection = DriverManager.getConnection(url, props);
-        } catch (SQLException e) {
-            logger.error("UNABLE TO CONNECT TO DATABASE");
-            throw new SQLRuntimeException(e);
-        }
+        String url = "jdbc:postgresql://%s:%s/%s".formatted(info.get(0), info.get(1), info.get(4));
+        Properties props = new Properties();
+        props.setProperty("user", info.get(2));
+        props.setProperty("password", info.get(3));
+        this.dataSource = new DriverManagerDataSource(url, props);
         logger.info("CONNECTED TO DB " + info.get(0) + ":" + info.get(1) + "@" + info.get(4));
     }
 
@@ -58,7 +56,7 @@ public class DB {
     }
 
     private ResultSet getDBFirst(String query) throws SQLException {
-        Statement statement = this.connection.createStatement();
+        Statement statement = dataSource.getConnection().createStatement();
         ResultSet result = statement.executeQuery(getQuery(query));
         result.next();
         return result;
@@ -127,7 +125,8 @@ public class DB {
         try {
             Map<Long, List<DBInv.Entry>> invs = loadItems();
             List<DBUser> users = new ArrayList<>();
-            Statement statement = this.connection.createStatement();
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(getQuery(query));
             while (result.next()) {
                 long id = result.getLong(1);
@@ -159,6 +158,7 @@ public class DB {
                         invs.getOrDefault(id, new ArrayList<>())
                 ));
             }
+            connection.close();
             return users;
         } catch (SQLException e) {
             queryError(query);
@@ -170,7 +170,8 @@ public class DB {
         String query = "load-items.sql";
         try {
             Map<Long, List<DBInv.Entry>> invs = new HashMap<>();
-            Statement statement = this.connection.createStatement();
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(getQuery(query));
             while (result.next()) {
                 long userId = result.getLong(1);
@@ -179,6 +180,7 @@ public class DB {
                 }
                 invs.get(userId).add(new DBInv.Entry(DBEnum.fromKey(result.getString(2), Item.class), result.getLong(3)));
             }
+            connection.close();
             return invs;
         } catch (SQLException e) {
             queryError(query);
@@ -190,7 +192,8 @@ public class DB {
         String query = "load-guilds.sql";
         try {
             List<DBGuild> guilds = new ArrayList<>();
-            Statement statement = this.connection.createStatement();
+            Connection connection = dataSource.getConnection();
+            Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(getQuery(query));
             while (result.next()) {
                 guilds.add(new DBGuild(
@@ -200,6 +203,7 @@ public class DB {
                         result.getLong(4))
                 );
             }
+            connection.close();
             return guilds;
         } catch (SQLException e) {
             queryError(query);
@@ -207,75 +211,71 @@ public class DB {
         }
     }
 
-    public void saveUser(Collection<DBUser> users) {
-        String query = "save-user.sql";
-        try {
-            for (DBUser user : users) {
-                CallableStatement statement = connection.prepareCall(getQuery(query));
-                statement.setLong("$1", user.getUserId());
-                statement.setString("$2", user.getName());
-                statement.setString("$3", DBEnum.toKey(user.getTitle()));
-                statement.setString("$4", user.getDescription());
-                statement.setString("$5", DBEnum.toKey(user.getCdClass()));
-                statement.setLong("$6", user.getExp());
-                statement.setLong("$7", user.getCoins());
-                statement.setString("$8", DBEnum.toKey(user.getWeapon().getType()));
-                statement.setString("$9", DBEnum.toKey(user.getArmor().getType()));
-                statement.setString("$10", DBEnum.toKey(user.getExtra().getType()));
-                statement.setLong("$11", user.getWeapon().getExp());
-                statement.setLong("$12", user.getArmor().getExp());
-                statement.setLong("$13", user.getExtra().getExp());
-                statement.setTimestamp("$14", Timestamp.valueOf(user.getLastVote()));
-                statement.setString("$15", DBEnum.toKey(user.getQuest().getType()));
-                statement.setInt("$16", user.getQuest().getLevel());
-                statement.setInt("$17", user.getQuest().getProgress());
-                statement.setString("$18", DBEnum.toKey(user.getFarming()));
-                statement.setLong("$19", user.getMonstersSlain());
-                statement.setLong("$20", user.getDoorsOpened());
-                statement.setLong("$21", user.getBossesSlain());
-                statement.setLong("$22", user.getItemsFound());
-                statement.setLong("$23", user.getChestsOpened());
-                statement.setBoolean("$24", user.isDeleted());
-                statement.executeQuery();
-                saveInv(user.getUserId(), user.getInv());
-            }
-        } catch (SQLException e) {
-            queryError(query);
-            throw new SQLRuntimeException(e);
+    public void saveUsers(Collection<DBUser> users) {
+        String query = "save-users.sql";
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(dataSource);
+        List<MapSqlParameterSource> params = new ArrayList<>();
+        for (DBUser user : users) {
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            param.addValue("$1", user.getUserId());
+            param.addValue("$2", user.getName());
+            param.addValue("$3", DBEnum.toKey(user.getTitle()));
+            param.addValue("$4", user.getDescription());
+            param.addValue("$5", DBEnum.toKey(user.getCdClass()));
+            param.addValue("$6", user.getExp());
+            param.addValue("$7", user.getCoins());
+            param.addValue("$8", DBEnum.toKey(user.getWeapon().getType()));
+            param.addValue("$9", DBEnum.toKey(user.getArmor().getType()));
+            param.addValue("$10", DBEnum.toKey(user.getExtra().getType()));
+            param.addValue("$11", user.getWeapon().getExp());
+            param.addValue("$12", user.getArmor().getExp());
+            param.addValue("$13", user.getExtra().getExp());
+            param.addValue("$14", Timestamp.valueOf(user.getLastVote()));
+            param.addValue("$15", DBEnum.toKey(user.getQuest().getType()));
+            param.addValue("$16", user.getQuest().getLevel());
+            param.addValue("$17", user.getQuest().getProgress());
+            param.addValue("$18", DBEnum.toKey(user.getFarming()));
+            param.addValue("$19", user.getMonstersSlain());
+            param.addValue("$20", user.getDoorsOpened());
+            param.addValue("$21", user.getBossesSlain());
+            param.addValue("$22", user.getItemsFound());
+            param.addValue("$23", user.getChestsOpened());
+            param.addValue("$24", user.isDeleted());
+            params.add(param);
         }
+        template.batchUpdate(getQuery(query), params.toArray(new MapSqlParameterSource[0]));
+        saveInv(users);
     }
 
-    public void saveInv(long userId, DBInv inv) {
+    public void saveInv(Collection<DBUser> users) {
         String query = "save-items.sql";
-        try {
-            for (DBInv.Entry e : inv.toEntrySet()) {
-                CallableStatement statement = connection.prepareCall(getQuery(query));
-                statement.setLong("$1", userId);
-                statement.setString("$2", DBEnum.toKey(e.item()));
-                statement.setLong("$3", e.amount());
-                statement.executeQuery();
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(dataSource);
+        List<MapSqlParameterSource> params = new ArrayList<>();
+        for (DBUser user : users) {
+            for (DBInv.Entry e : user.getInv().toEntrySet()) {
+                MapSqlParameterSource param = new MapSqlParameterSource();
+                param.addValue("$1", user.getUserId());
+                param.addValue("$2", DBEnum.toKey(e.item()));
+                param.addValue("$3", e.amount());
             }
-        } catch (SQLException e) {
-            queryError(query);
-            throw new SQLRuntimeException(e);
         }
+        template.batchUpdate(getQuery(query), params.toArray(new MapSqlParameterSource[0]));
     }
 
-    public void saveGuild(Collection<DBGuild> guilds) {
+    public void saveGuilds(Collection<DBGuild> guilds) {
         String query = "save-guilds.sql";
-        try {
-            for (DBGuild guild : guilds) {
-                CallableStatement statement = connection.prepareCall(getQuery(query));
-                statement.setLong("$1", guild.getGuildId());
-                statement.setLong("$2", guild.getDoorsOpened());
-                statement.setLong("$3", guild.getMonstersSlain());
-                statement.setLong("$4", guild.getBossesSlain());
-                statement.executeQuery();
-            }
-        } catch (SQLException e) {
-            queryError(query);
-            throw new SQLRuntimeException(e);
+        NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(dataSource);
+        List<MapSqlParameterSource> params = new ArrayList<>();
+        for (DBGuild guild : guilds) {
+            MapSqlParameterSource param = new MapSqlParameterSource();
+            param.addValue("$1", guild.getGuildId());
+            param.addValue("$2", guild.getDoorsOpened());
+            param.addValue("$3", guild.getMonstersSlain());
+            param.addValue("$4", guild.getBossesSlain());
+            params.add(param);
+
         }
+        template.batchUpdate(getQuery(query), params.toArray(new MapSqlParameterSource[0]));
     }
 
     public String test() {

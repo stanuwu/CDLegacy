@@ -1,5 +1,9 @@
 package com.stanuwu.cdlegacy.features.button;
 
+import com.stanuwu.cdlegacy.features.ParamCache;
+import com.stanuwu.cdlegacy.game.data.DBData;
+import com.stanuwu.cdlegacy.game.data.DBGuild;
+import com.stanuwu.cdlegacy.game.data.DBUser;
 import com.stanuwu.cdlegacy.message.InteractionReplyContext;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -16,12 +20,28 @@ public class ButtonContext {
     private final long ownerId;
     @Getter
     private final String route;
+    @Getter
+    private final ParamCache.CacheObject cache;
+    @Getter
+    private final DBUser user;
+    @Getter
+    private final DBGuild guild;
 
     public ButtonContext(ButtonInteractionEvent event, ButtonData button, long ownerId, String route) {
         this.event = event;
         this.button = button;
         this.ownerId = ownerId;
         this.route = route;
+        if (button.useCache()) this.cache = ParamCache.popCache(button.name());
+        else this.cache = null;
+        if (button.isGame()) {
+            this.user = DBData.getUser(event.getUser().getIdLong());
+            if (event.getGuild() != null) this.guild = DBData.getGuild(event.getGuild().getIdLong());
+            else this.guild = null;
+        } else {
+            this.user = null;
+            this.guild = null;
+        }
     }
 
     public InteractionReplyContext reply() {

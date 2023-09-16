@@ -1,6 +1,7 @@
 package com.stanuwu.cdlegacy.features.command;
 
 import com.stanuwu.cdlegacy.Config;
+import com.stanuwu.cdlegacy.game.data.DBData;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -38,6 +39,14 @@ public abstract class BaseCommand extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (!event.getName().equals(this.data.name())) return;
         if (this.data.staffCommand() && !Config.isStaff(event.getUser().getIdLong())) return;
+        if (this.data.guildOnly() && event.getGuild() == null) {
+            event.reply("Error: This command can not be used in dms.").setEphemeral(true).queue();
+            return;
+        }
+        if (this.data.isGame() && DBData.getUser(event.getUser().getIdLong()) == null) {
+            event.reply("Error: Please create a character using `/start` to play.").setEphemeral(true).queue();
+            return;
+        }
         if (this.data.slowCommand()) event.deferReply().queue();
         this.doCommand(new CommandContext(this.data, event));
     }

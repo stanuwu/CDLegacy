@@ -68,7 +68,13 @@ public class CDLegacy {
         logger.info("REGISTERED FEATURES");
 
         logger.info("STARTING SAVE THREAD");
-        ScheduledFuture<?> executor = Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> DBData.save(database), 5, 5, TimeUnit.MINUTES);
+        ScheduledFuture<?> executor = Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> {
+            try {
+                DBData.save(database);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }, 5, 5, TimeUnit.MINUTES);
         logger.info("SAVE THREAD STARTED");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -79,6 +85,9 @@ public class CDLegacy {
         }));
 
         // TODO
+        // isGame -> features
+        // isCacheData -> interactions
+        // interactions cache
         // interaction data
         // db test
         // game

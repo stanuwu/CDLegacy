@@ -14,4 +14,10 @@ public @interface ButtonData {
     boolean complex() default false;
 
     boolean slow() default false;
+
+    boolean useCache() default false;
+
+    boolean isGame() default false;
+
+    boolean guildOnly() default true;
 }

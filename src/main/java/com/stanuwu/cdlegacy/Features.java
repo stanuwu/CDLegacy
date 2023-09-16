@@ -7,6 +7,8 @@ import com.stanuwu.cdlegacy.features.command.impl.TestCommand;
 import com.stanuwu.cdlegacy.features.command.impl.TestDBCommand;
 import com.stanuwu.cdlegacy.features.dropdown.impl.TestEntityDropdown;
 import com.stanuwu.cdlegacy.features.dropdown.impl.TestStringDropdown;
+import com.stanuwu.cdlegacy.game.impl.start.StartButton;
+import com.stanuwu.cdlegacy.game.impl.start.StartCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -17,11 +19,16 @@ public class Features {
 
     public Features(DB database) {
         commands = new ListenerAdapter[]{
+                // Test
                 new TestCommand(),
                 new TestDBCommand(database),
                 new TestButton(),
                 new TestStringDropdown(),
                 new TestEntityDropdown(),
+
+                // Start
+                new StartCommand(),
+                new StartButton(),
         };
     }
 

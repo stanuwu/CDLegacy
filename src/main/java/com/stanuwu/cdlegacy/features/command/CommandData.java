@@ -12,4 +12,8 @@ public @interface CommandData {
     boolean slowCommand() default false;
 
     boolean staffCommand() default false;
+
+    boolean isGame() default false;
+
+    boolean guildOnly() default true;
 }
