@@ -1,6 +1,7 @@
 package com.stanuwu.cdlegacy;
 
 import com.stanuwu.cdlegacy.db.DB;
+import com.stanuwu.cdlegacy.game.data.DBData;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.Logger;
@@ -10,11 +11,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 public class CDLegacy {
     public static void main(String[] args) {
         Logger logger = new SimpleLoggerFactory().getLogger("CDLegacy");
         DB database = new DB();
+        DBData.load(database);
 
         boolean modeDev = false;
         if (args.length > 0) modeDev = Objects.equals(args[0], "dev");
@@ -61,5 +66,22 @@ public class CDLegacy {
         logger.info("REGISTERING FEATURES");
         features.registerPost(JDA, modeDev, devGuild);
         logger.info("REGISTERED FEATURES");
+
+        logger.info("STARTING SAVE THREAD");
+        ScheduledFuture<?> executor = Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> DBData.save(database), 5, 5, TimeUnit.MINUTES);
+        logger.info("SAVE THREAD STARTED");
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            logger.info("SHUTTING DOWN");
+            executor.cancel(false);
+            DBData.save(database);
+            logger.info("SHUTDOWN COMPLETED");
+        }));
+
+        // TODO
+        // interaction data
+        // db test
+        // game
+        // voting/guild count
     }
 }
