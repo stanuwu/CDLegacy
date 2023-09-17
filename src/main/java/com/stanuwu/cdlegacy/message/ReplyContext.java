@@ -4,7 +4,8 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
-import net.dv8tion.jda.api.events.interaction.component.GenericComponentInteractionCreateEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.GenericSelectMenuInteractionEvent;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.requests.RestAction;
@@ -77,10 +78,12 @@ public class ReplyContext {
             if (slow) req = e.getHook().sendMessage(message).setEphemeral(hidden);
             else req = e.reply(message).setEphemeral(hidden);
             return doSend(req);
-        } else if (event instanceof GenericComponentInteractionCreateEvent e) {
+        } else if (event instanceof ButtonInteractionEvent e) {
             if (slow) req = e.getHook().sendMessage(message).setEphemeral(hidden);
             else req = e.reply(message).setEphemeral(hidden);
             return doSend(req);
+        } else if (event instanceof GenericSelectMenuInteractionEvent<?, ?> e) {
+            return doSend(e.getHook().sendMessage(message).setEphemeral(hidden));
         }
         return null;
     }

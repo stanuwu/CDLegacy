@@ -1,0 +1,19 @@
+:dagger: %weapon%
+**%weapon_lvl%**
+**Damage: ** %weapon_damage%
+%weapon_desc%
+
+:shield: %armor%
+**%armor_lvl%**
+**Block: ** %armor_block%%
+%armor_desc%
+
+:crystal_ball: %extra%
+**%extra_lvl%**
+%extra_desc%
+
+:door: Doors: %doors%
+:wolf: Monsters: %monsters%
+:dragon: Bosses: %bosses%
+:star: Items: %items%
+:briefcase: Chests: %chests%

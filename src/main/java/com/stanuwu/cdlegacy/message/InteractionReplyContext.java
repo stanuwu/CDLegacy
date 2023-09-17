@@ -51,7 +51,8 @@ public class InteractionReplyContext extends ReplyContext {
     public void edit() {
         MessageEditRequest<?> req;
         GenericComponentInteractionCreateEvent e = (GenericComponentInteractionCreateEvent) event;
-        req = e.getHook().editOriginal(message);
+        if (this.slow) req = e.getHook().editOriginal(message);
+        else req = e.editMessage(message);
         req
                 .setEmbeds(embeds)
                 .setFiles(files);

@@ -46,15 +46,14 @@ public class TestCommand extends BaseCommand {
                                 .build()
                 )
                 .actionRow(
-                        Dropdowns.string("s-test-dropdown", ctx.authorId(),
+                        Dropdowns.string("s-test-dropdown", ctx.authorId(), "Placeholder 1",
                                         Dropdowns.option("Option 1", "option1"),
                                         Dropdowns.option("Option 2", "option2")
-                                ).placeholder("Placeholder 1")
+                                )
                                 .build()
                 )
                 .actionRow(
-                        Dropdowns.entity("e-test-dropdown", ctx.authorId(), Dropdowns.ROLE)
-                                .placeholder("Placeholder 1")
+                        Dropdowns.entity("e-test-dropdown", ctx.authorId(), "Placeholder 1", Dropdowns.ROLE)
                                 .build()
                 )
                 .send();

@@ -19,8 +19,8 @@ public abstract class BaseButton extends ListenerAdapter {
         String id = event.getButton().getId();
         if (id == null) return;
         String[] args = id.split(";");
-        if (args.length < (this.data.complex() ? 3 : 2)) throw new InvalidButtonIdException(event.getButton().getId());
         if (!args[0].equals(this.data.name())) return;
+        if (args.length < (this.data.complex() ? 3 : 2)) throw new InvalidButtonIdException(event.getButton().getId());
         if (this.data.guildOnly() && event.getGuild() == null) {
             event.reply("Error: This interaction can not be used in dms.").setEphemeral(true).queue();
             return;

@@ -9,6 +9,9 @@ import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.entities.channel.Channel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import org.slf4j.helpers.CheckReturnValue;
+
+import java.time.LocalDateTime;
 
 public class CommandContext {
     private final CommandData command;
@@ -31,14 +34,17 @@ public class CommandContext {
         }
     }
 
+    @CheckReturnValue
     public ReplyContext reply() {
         return new ReplyContext(command.slowCommand(), event);
     }
 
+    @CheckReturnValue
     public ReplyContext reply(MessageEmbed embed) {
         return new ReplyContext(command.slowCommand(), event).embeds(embed);
     }
 
+    @CheckReturnValue
     public ReplyContext reply(String text) {
         return new ReplyContext(command.slowCommand(), event).text(text);
     }
@@ -105,5 +111,17 @@ public class CommandContext {
 
     public long authorId() {
         return event.getUser().getIdLong();
+    }
+
+    public User author() {
+        return event.getUser();
+    }
+
+    public Guild guild() {
+        return event.getGuild();
+    }
+
+    public LocalDateTime time() {
+        return event.getTimeCreated().toLocalDateTime();
     }
 }

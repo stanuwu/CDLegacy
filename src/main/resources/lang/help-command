@@ -1,0 +1,33 @@
+**Character**
+`/start` Create a new character.
+`/delete` Delete your character.
+`/character` View your character.
+`/stats` View your stats.
+`/rename` Rename your character.
+`/description` Change your description.
+`/title` Change your title.
+`/class` Change your class.
+
+**Gameplay**
+`/door` Open a new dungeon room. (WIP)
+`/farm` Farm some items.
+`/train` Train with your gear. (WIP)
+`/boss` Summon and fight a boss. (WIP)
+`/quest` Accept and complete quests. (WIP)
+
+**Inventory**
+`/inventory` View your inventory.
+`/coinflip` Flip a coin and wager money.
+`/slots` Play slots for money.
+`/craft` Craft gear with your items. (WIP)
+`/shop` Buy chests and items. (WIP)
+
+**Leaderboards**
+`/exptop` View the level leaderboard. (WIP)
+`/coinstop` View the coin leaderboard. (WIP)
+`/geartop` View the gear leaderboard. (WIP)
+`/servertop` View the server level leaderboard. (WIP)
+
+**Misc**
+`/help` View this menu.
+`/vote` Vote for the bot and receive some rewards. (WIP)

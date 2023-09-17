@@ -7,6 +7,7 @@ import com.stanuwu.cdlegacy.features.command.BaseCommand;
 import com.stanuwu.cdlegacy.features.command.CommandContext;
 import com.stanuwu.cdlegacy.features.command.CommandData;
 import com.stanuwu.cdlegacy.features.command.CommandOptionData;
+import com.stanuwu.cdlegacy.game.data.DBData;
 import com.stanuwu.cdlegacy.message.Placeholder;
 import com.stanuwu.cdlegacy.message.embeds.Embeds;
 import com.stanuwu.cdlegacy.util.Emojis;
@@ -25,6 +26,10 @@ public class StartCommand extends BaseCommand {
 
     @Override
     protected void doCommand(CommandContext ctx) {
+        if (DBData.getUser(ctx.authorId()) != null) {
+            ctx.reply(Embeds.error("You already have a character.").build()).send();
+            return;
+        }
         String name = StringUtil.truncate(StringUtil.clean(ctx.getArg("name")), 20);
         ctx.reply(Embeds.large("Character Creation")
                 .langDescription("start-command",

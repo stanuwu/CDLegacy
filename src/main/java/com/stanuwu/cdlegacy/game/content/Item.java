@@ -5,6 +5,8 @@ import lombok.Getter;
 public enum Item {
     STONE("Stone"),
     DIAMOND("Diamond"),
+    WOOD("Wood"),
+    GOLDEN_LEAF("Golden Leaf"),
     ;
     @Getter
     private final String name;

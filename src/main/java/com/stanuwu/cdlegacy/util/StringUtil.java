@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class StringUtil {
     public String clean(String string) {
-        return string.replaceAll("[^[A-Za-z0-9\\,\\.\\-\\_\\:\\'\\ \\(\\)\\\"]]", "");
+        return string.replaceAll("[^[A-Za-z0-9\\,\\.\\-\\_\\:\\'\\ \\(\\)\\\"\\!]]", "");
     }
 
     public String truncate(String string, int length) {

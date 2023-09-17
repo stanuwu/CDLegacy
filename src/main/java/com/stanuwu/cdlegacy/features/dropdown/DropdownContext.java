@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.events.interaction.component.GenericSelectMenuInterac
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
 import net.dv8tion.jda.api.interactions.components.selections.SelectMenu;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,5 +77,9 @@ public abstract class DropdownContext {
 
     public void removeAll() {
         event.getMessage().editMessageComponents().complete();
+    }
+
+    public LocalDateTime time() {
+        return event.getTimeCreated().toLocalDateTime();
     }
 }

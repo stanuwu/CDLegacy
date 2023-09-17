@@ -1,11 +1,13 @@
 package com.stanuwu.cdlegacy.game.content;
 
 import com.stanuwu.cdlegacy.game.event.EventHook;
-import com.stanuwu.cdlegacy.game.event.Requirement;
 import lombok.Getter;
 
 public enum CDClass {
-    ADVENTURER("Adventurer", "Starter class, receives a 5% exp bonus.", new EventHook()),
+    ADVENTURER("Adventurer", "Receives a 5% exp bonus.", new EventHook()),
+    SAGE("Sage", "Receives a 7% exp bonus.", new EventHook(), Requirement.LEGACY),
+    THIEF("Thief", "Receives a 5% coin bonus.", new EventHook()),
+    BRAWLER("Brawler", "Receives a 5% blunt weapon damage bonus.", new EventHook(), Requirement.level(5)),
     ;
     @Getter
     private final String name;

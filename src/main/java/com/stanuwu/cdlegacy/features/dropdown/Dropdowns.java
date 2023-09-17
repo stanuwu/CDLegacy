@@ -12,12 +12,12 @@ public class Dropdowns {
     public static EntitySelectMenu.SelectTarget ROLE = EntitySelectMenu.SelectTarget.ROLE;
     public static EntitySelectMenu.SelectTarget CHANNEL = EntitySelectMenu.SelectTarget.CHANNEL;
 
-    public static EntityD entity(String id, long ownerId, EntitySelectMenu.SelectTarget type) {
-        return new EntityD(id, ownerId, type);
+    public static EntityD entity(String id, long ownerId, String placeholder, EntitySelectMenu.SelectTarget type) {
+        return new EntityD(id, ownerId, placeholder, type);
     }
 
-    public static StringD string(String id, long ownerId, Option... options) {
-        return new StringD(id, ownerId, options);
+    public static StringD string(String id, long ownerId, String placeholder, Option... options) {
+        return new StringD(id, ownerId, placeholder, options);
     }
 
     public static Option option(String label, String value) {
@@ -29,10 +29,10 @@ public class Dropdowns {
         protected long ownerId;
         protected int min = 1;
         protected int max = 1;
-        protected String placeholder = "";
+        protected String placeholder;
         protected String route = "";
 
-        public Base(String id, long ownerId) {
+        public Base(String id, long ownerId, String placeholder) {
             this.id = id;
             this.ownerId = ownerId;
         }
@@ -44,11 +44,6 @@ public class Dropdowns {
 
         public T max(int max) {
             this.max = max;
-            return (T) this;
-        }
-
-        public T placeholder(String placeholder) {
-            this.placeholder = placeholder;
             return (T) this;
         }
 
@@ -65,8 +60,8 @@ public class Dropdowns {
     public static class EntityD extends Base<EntityD> {
         private final EntitySelectMenu.SelectTarget type;
 
-        public EntityD(String id, long ownerId, EntitySelectMenu.SelectTarget type) {
-            super(id, ownerId);
+        public EntityD(String id, long ownerId, String placeholder, EntitySelectMenu.SelectTarget type) {
+            super(id, ownerId, placeholder);
             this.type = type;
         }
 
@@ -82,8 +77,8 @@ public class Dropdowns {
     public static class StringD extends Base<StringD> {
         private final Option[] options;
 
-        public StringD(String id, long ownerId, Option... options) {
-            super(id, ownerId);
+        public StringD(String id, long ownerId, String placeholder, Option... options) {
+            super(id, ownerId, placeholder);
             this.options = options;
         }
 

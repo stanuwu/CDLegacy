@@ -1,11 +1,15 @@
 package com.stanuwu.cdlegacy.game.content;
 
-import com.stanuwu.cdlegacy.game.event.Requirement;
 import lombok.Getter;
 
 public enum Title {
     PLAYER("Player"),
-    GAMER("Gamer", Requirement.level(10)),
+    BEGINNER("Beginner"),
+    NOVICE("Novice", Requirement.level(5)),
+    INTERMEDIATE("Intermediate", Requirement.level(10)),
+    LEGACY("Timeworn", Requirement.LEGACY),
+    N("<3", Requirement.N),
+    DEVELOPER("Dev", Requirement.OWNER),
     ;
     @Getter
     private final String title;

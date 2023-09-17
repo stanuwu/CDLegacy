@@ -241,7 +241,7 @@ public class Embeds {
     }
 
     public Embeds defaultFooter() {
-        return langFooter("default-desc", Config.AVATAR);
+        return langFooter("default-desc", Config.AVATAR, new Placeholder("version", Config.VERSION));
     }
 
     public Embeds defaultThumbnail() {

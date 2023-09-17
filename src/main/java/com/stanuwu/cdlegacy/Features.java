@@ -1,14 +1,28 @@
 package com.stanuwu.cdlegacy;
 
 import com.stanuwu.cdlegacy.db.DB;
-import com.stanuwu.cdlegacy.features.button.impl.TestButton;
 import com.stanuwu.cdlegacy.features.command.BaseCommand;
-import com.stanuwu.cdlegacy.features.command.impl.TestCommand;
-import com.stanuwu.cdlegacy.features.command.impl.TestDBCommand;
-import com.stanuwu.cdlegacy.features.dropdown.impl.TestEntityDropdown;
-import com.stanuwu.cdlegacy.features.dropdown.impl.TestStringDropdown;
+import com.stanuwu.cdlegacy.game.impl.cdclass.ClassCommand;
+import com.stanuwu.cdlegacy.game.impl.cdclass.ClassDropdown;
+import com.stanuwu.cdlegacy.game.impl.character.CharacterCommand;
+import com.stanuwu.cdlegacy.game.impl.coinflip.CoinflipButton;
+import com.stanuwu.cdlegacy.game.impl.coinflip.CoinflipCommand;
+import com.stanuwu.cdlegacy.game.impl.delete.DeleteButton;
+import com.stanuwu.cdlegacy.game.impl.delete.DeleteCommand;
+import com.stanuwu.cdlegacy.game.impl.description.DescriptionCommand;
+import com.stanuwu.cdlegacy.game.impl.farm.FarmButton;
+import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
+import com.stanuwu.cdlegacy.game.impl.farm.FarmDropdown;
+import com.stanuwu.cdlegacy.game.impl.help.HelpCommand;
+import com.stanuwu.cdlegacy.game.impl.inventory.InventoryCommand;
+import com.stanuwu.cdlegacy.game.impl.rename.RenameCommand;
+import com.stanuwu.cdlegacy.game.impl.server.ServerCommand;
+import com.stanuwu.cdlegacy.game.impl.slots.SlotsCommand;
 import com.stanuwu.cdlegacy.game.impl.start.StartButton;
 import com.stanuwu.cdlegacy.game.impl.start.StartCommand;
+import com.stanuwu.cdlegacy.game.impl.stats.StatsCommand;
+import com.stanuwu.cdlegacy.game.impl.title.TitleCommand;
+import com.stanuwu.cdlegacy.game.impl.title.TitleDropdown;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -20,15 +34,60 @@ public class Features {
     public Features(DB database) {
         commands = new ListenerAdapter[]{
                 // Test
-                new TestCommand(),
-                new TestDBCommand(database),
-                new TestButton(),
-                new TestStringDropdown(),
-                new TestEntityDropdown(),
+                // new TestCommand(),
+                // new TestDBCommand(database),
+                // new TestButton(),
+                // new TestStringDropdown(),
+                // new TestEntityDropdown(),
 
                 // Start
                 new StartCommand(),
                 new StartButton(),
+
+                // Delete
+                new DeleteCommand(),
+                new DeleteButton(),
+
+                // Character
+                new CharacterCommand(),
+
+                // Rename
+                new RenameCommand(),
+
+                // Description
+                new DescriptionCommand(),
+
+                // Stats
+                new StatsCommand(),
+
+                // Server
+                new ServerCommand(),
+
+                // Inventory
+                new InventoryCommand(),
+
+                // Coinflip
+                new CoinflipCommand(),
+                new CoinflipButton(),
+
+                // Slots
+                new SlotsCommand(),
+
+                // Help
+                new HelpCommand(),
+
+                // Class
+                new ClassCommand(),
+                new ClassDropdown(),
+
+                // Title
+                new TitleCommand(),
+                new TitleDropdown(),
+
+                // Farm
+                new FarmCommand(),
+                new FarmButton(),
+                new FarmDropdown()
         };
     }
 
@@ -41,9 +100,9 @@ public class Features {
             if (l instanceof BaseCommand c) {
                 if (modeDev) {
                     Guild guild = jda.getGuildById(devGuild);
-                    if (guild != null) guild.upsertCommand(c.buildCommand()).complete();
+                    if (guild != null) guild.upsertCommand(c.buildCommand()).queue();
                 } else {
-                    jda.upsertCommand(c.buildCommand()).complete();
+                    jda.upsertCommand(c.buildCommand()).queue();
                 }
             }
         }

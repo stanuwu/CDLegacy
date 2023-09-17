@@ -3,7 +3,8 @@ package com.stanuwu.cdlegacy.game.content;
 import lombok.Getter;
 
 public enum Farming {
-    MINING("Mining", ":pickaxe:", Item.STONE, Item.DIAMOND);
+    MINING("Mining", ":pick:", Item.STONE, Item.DIAMOND),
+    FORAGING("Foraging", ":axe:", Item.WOOD, Item.GOLDEN_LEAF);
     @Getter
     private final String name;
     @Getter

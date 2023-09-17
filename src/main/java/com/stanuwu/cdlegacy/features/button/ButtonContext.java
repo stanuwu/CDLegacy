@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,5 +76,9 @@ public class ButtonContext {
 
     public void removeAll() {
         event.getMessage().editMessageComponents().complete();
+    }
+
+    public LocalDateTime time() {
+        return event.getTimeCreated().toLocalDateTime();
     }
 }

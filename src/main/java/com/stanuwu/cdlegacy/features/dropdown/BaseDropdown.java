@@ -31,9 +31,9 @@ public abstract class BaseDropdown extends ListenerAdapter {
         String id = event.getSelectMenu().getId();
         if (id == null) return;
         String[] args = id.split(";");
+        if (!args[0].equals(this.data.name())) return;
         if (args.length < (this.data.complex() ? 3 : 2))
             throw new InvalidDropdownIdException(event.getSelectMenu().getId());
-        if (!args[0].equals(this.data.name())) return;
         if (this.data.guildOnly() && event.getGuild() == null) {
             event.reply("Error: This interaction can not be used in dms.").setEphemeral(true).queue();
             return;
