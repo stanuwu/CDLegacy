@@ -20,11 +20,12 @@ public class FarmButton extends BaseButton {
         DBUser user = ctx.getUser();
         if (user.canDoFarm(ctx.time())) {
             Farming farming = user.getFarming();
-            boolean rare = new Random().nextInt(0, 100) == 0;
+            Random random = new Random();
+            boolean rare = random.nextInt(0, 50) == 0;
             Item gain = rare ? farming.getRare() : farming.getCommon();
-            int count = rare ? 1 : 2;
+            int count = rare ? 1 : random.nextInt(1, 4);
             user.getInv().add(gain, count);
-            ctx.reply(Embeds.success("You obtain " + count + "x " + gain.getName() + ".").build()).send();
+            ctx.reply(Embeds.success("You obtained " + count + "x " + gain.getName() + ".").build()).send();
         } else {
             ctx.reply(Embeds.error("You can farm again " + Timestamps.toTimestamp(TimeFormat.RELATIVE, user.canFarmAt()) + ".").build()).send();
         }
