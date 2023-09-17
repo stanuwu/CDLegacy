@@ -10,5 +10,13 @@ public abstract class Event {
     @Setter
     private boolean cancelled;
 
-    public abstract void apply(DBUser user, DBGuild guild);
+    public final DBUser user;
+    public final DBGuild guild;
+
+    protected Event(DBUser user, DBGuild guild) {
+        this.user = user;
+        this.guild = guild;
+    }
+
+    public abstract void apply();
 }

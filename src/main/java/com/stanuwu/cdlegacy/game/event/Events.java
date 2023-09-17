@@ -1,30 +1,32 @@
 package com.stanuwu.cdlegacy.game.event;
 
-import com.stanuwu.cdlegacy.game.data.DBGuild;
-import com.stanuwu.cdlegacy.game.data.DBUser;
+import com.stanuwu.cdlegacy.game.event.events.EventObtainCoins;
+import com.stanuwu.cdlegacy.game.event.events.EventObtainExp;
 import com.stanuwu.cdlegacy.game.event.events.EventObtainItem;
-import lombok.AccessLevel;
-import lombok.experimental.FieldDefaults;
+import com.stanuwu.cdlegacy.game.event.events.EventSlayMonster;
 import lombok.experimental.UtilityClass;
 
 import java.util.function.Consumer;
 
 @UtilityClass
-@FieldDefaults(makeFinal = true, level = AccessLevel.PUBLIC)
 public class Events {
-    EventCaller<EventObtainItem> OBTAIN_ITEM = new EventCaller<>();
+    public final EventCaller<EventObtainCoins> OBTAIN_COINS = new EventCaller<>();
+    public final EventCaller<EventObtainExp> OBTAIN_EXP = new EventCaller<>();
+    public final EventCaller<EventObtainItem> OBTAIN_ITEM = new EventCaller<>();
+    public final EventCaller<EventSlayMonster> SLAY_MONSTER = new EventCaller<>();
 
     public static class EventCaller<T extends Event> {
-        public void invoke(T event, DBUser user, DBGuild guild) {
-            EventManager.call(this, event).apply(user, guild);
+        public void invoke(T event) {
+            event.user.invokeEvent(this, event);
+            event.guild.invokeEvent(this, event);
+            event.apply();
         }
 
-        public SingleEventHook<T> hook(Consumer<T> consumer) {
+        public SingleEventHook<T> make(Consumer<T> consumer) {
             return new SingleEventHook<>(this, consumer);
         }
     }
 
     public record SingleEventHook<T extends Event>(EventCaller<T> caller, Consumer<T> consumer) {
-
     }
 }
