@@ -82,37 +82,6 @@ CREATE TABLE public.players (
 ALTER TABLE public.players OWNER TO postgres;
 
 --
--- Data for Name: guilds; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.guilds (guildid, doors_opened, monsters_slain, bosses_slain) FROM stdin;
-664017503176884234	0	0	0
-\.
-
-
---
--- Data for Name: items; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.items (playerid, name, count) FROM stdin;
-623984743914012712	STONE	5
-623984743914012712	DIAMOND	1
-\.
-
-
---
--- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.players (playerid, name, title, description, class, exp, coins, weapon, armor, extra, weapon_xp, armor_xp, extra_xp, last_vote, quest, quest_level, quest_progress, farming, monsters_slain, doors_opened, bosses_slain, items_found, chests_opened, deleted) FROM stdin;
-623984743914012712	stan	DEVELOPER	Freddy Fortnite aint got nothin on me!	SAGE	0	31	STICK	RAGS	PENDANT	0	0	0	2000-01-01 00:00:00	NONE	1	0	FORAGING	0	0	0	0	0	f
-677623766066659348	Freddy Facebook	N	uwu	THIEF	0	50	STICK	RAGS	PENDANT	0	0	0	2000-01-01 00:00:00	NONE	1	0	FORAGING	0	0	0	0	0	f
-159355703016947713	armored core 6 fires	LEGACY	Der Antagonist ist ein Muskel und Gegenspieler des Agonisten. Das muskulre Zusam	ADVENTURER	0	50	STICK	RAGS	PENDANT	0	0	0	2000-01-01 00:00:00	NONE	1	0	MINING	0	0	0	0	0	f
-255732879525412865	Coinbiter	PLAYER	Default Description	ADVENTURER	0	49	STICK	RAGS	PENDANT	0	0	0	2000-01-01 00:00:00	NONE	1	0	MINING	0	0	0	0	0	f
-\.
-
-
---
 -- Name: guilds guilds_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
