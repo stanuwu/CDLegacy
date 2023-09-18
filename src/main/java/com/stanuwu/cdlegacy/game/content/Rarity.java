@@ -39,7 +39,7 @@ public enum Rarity {
         this.dropChance10k = dropChance10k;
     }
 
-    public Rarity getRandomRarity() {
+    public static Rarity getRandomRarity() {
         int rng = new Random().nextInt(0, 10000);
         Rarity current = COMMON;
         int min = 10000;

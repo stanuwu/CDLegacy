@@ -90,7 +90,8 @@ public class CDLegacy {
         }));
 
         // TODO
-        // game -> help list
+        // content
+        // bosses
         // voting/guild count
     }
 }

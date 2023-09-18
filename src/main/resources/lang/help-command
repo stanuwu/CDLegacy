@@ -9,7 +9,7 @@
 `/class` Change your class.
 
 **Gameplay**
-`/door` Open a new dungeon room. (WIP)
+`/door` Open a new dungeon room.
 `/farm` Farm some items.
 `/train` Train with your gear.
 `/quest` Accept and complete quests.
@@ -27,4 +27,4 @@
 
 **Misc**
 `/help` View this menu.
-`/vote` Vote for the bot and receive some rewards. (WIP)
+`/vote` Vote for the bot and receive some rewards. (Coming soon:tm:)

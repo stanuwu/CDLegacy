@@ -34,7 +34,7 @@ public class DBArmor {
     public float getBlock() {
         int base = this.getType().getReduction();
         if (base == 0) return 0;
-        return Math.max(GameScale.armorBlock(this.getType().getReduction(), this.getLevel()), 50) / 100;
+        return Math.min(GameScale.armorBlock(this.getType().getReduction(), this.getLevel()), 50) / 100;
     }
 
     public String formatName() {

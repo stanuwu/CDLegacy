@@ -1,0 +1,7 @@
+### [Lvl. %monster_level%] %monster%
+**Damage: ** %monster_damage%
+**Block: ** %monster_block%%
+%monster_desc%
+
+:game_die: You roll a %roll%!
+%status%

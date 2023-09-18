@@ -1,6 +1,7 @@
 package com.stanuwu.cdlegacy.features.command;
 
 import com.stanuwu.cdlegacy.Config;
+import com.stanuwu.cdlegacy.features.IFeature;
 import com.stanuwu.cdlegacy.game.data.DBData;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -9,7 +10,7 @@ import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.interactions.commands.build.SlashCommandData;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseCommand extends ListenerAdapter {
+public abstract class BaseCommand extends ListenerAdapter implements IFeature {
     private final CommandData data;
     private final CommandOptionData[] options;
 
@@ -52,4 +53,9 @@ public abstract class BaseCommand extends ListenerAdapter {
     }
 
     protected abstract void doCommand(CommandContext ctx);
+
+    @Override
+    public String getName() {
+        return this.data.name();
+    }
 }

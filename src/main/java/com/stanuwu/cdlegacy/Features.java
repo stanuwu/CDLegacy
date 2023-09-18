@@ -1,6 +1,7 @@
 package com.stanuwu.cdlegacy;
 
 import com.stanuwu.cdlegacy.db.DB;
+import com.stanuwu.cdlegacy.features.IFeature;
 import com.stanuwu.cdlegacy.features.command.BaseCommand;
 import com.stanuwu.cdlegacy.game.impl.cdclass.ClassCommand;
 import com.stanuwu.cdlegacy.game.impl.cdclass.ClassDropdown;
@@ -13,6 +14,7 @@ import com.stanuwu.cdlegacy.game.impl.craft.CraftDropdown;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteButton;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteCommand;
 import com.stanuwu.cdlegacy.game.impl.description.DescriptionCommand;
+import com.stanuwu.cdlegacy.game.impl.door.DoorCommand;
 import com.stanuwu.cdlegacy.game.impl.drop.DropButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
@@ -37,7 +39,14 @@ import com.stanuwu.cdlegacy.game.impl.train.TrainCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent;
+import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Features {
     ListenerAdapter[] commands;
@@ -122,11 +131,14 @@ public class Features {
 
                 // Top
                 new TopCommand(),
+
+                // Door
+                new DoorCommand(),
         };
     }
 
     public void registerPre(JDABuilder b) {
-        b.addEventListeners((Object[]) commands);
+        b.addEventListeners(new FeatureListener(commands));
     }
 
     public void registerPost(JDA jda, boolean modeDev, long devGuild) {
@@ -139,6 +151,46 @@ public class Features {
                     jda.upsertCommand(c.buildCommand()).queue();
                 }
             }
+        }
+    }
+
+    private static class FeatureListener extends ListenerAdapter {
+        private final Map<String, ListenerAdapter> events = new HashMap<>();
+
+        private FeatureListener(ListenerAdapter[] listeners) {
+            for (ListenerAdapter l : listeners) {
+                if (l instanceof IFeature f) events.put(f.getName(), l);
+            }
+        }
+
+        @Override
+        public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+            if (events.containsKey(event.getName())) events.get(event.getName()).onSlashCommandInteraction(event);
+        }
+
+        @Override
+        public void onButtonInteraction(ButtonInteractionEvent event) {
+            if (event.getButton().getId() == null) return;
+            String id = idPrefix(event.getButton().getId());
+            if (events.containsKey(id)) events.get(id).onButtonInteraction(event);
+        }
+
+        @Override
+        public void onStringSelectInteraction(StringSelectInteractionEvent event) {
+            if (event.getSelectMenu().getId() == null) return;
+            String id = idPrefix(event.getSelectMenu().getId());
+            if (events.containsKey(id)) events.get(id).onStringSelectInteraction(event);
+        }
+
+        @Override
+        public void onEntitySelectInteraction(EntitySelectInteractionEvent event) {
+            if (event.getSelectMenu().getId() == null) return;
+            String id = idPrefix(event.getSelectMenu().getId());
+            if (events.containsKey(id)) events.get(id).onEntitySelectInteraction(event);
+        }
+
+        private String idPrefix(String id) {
+            return id.split(";")[0];
         }
     }
 }

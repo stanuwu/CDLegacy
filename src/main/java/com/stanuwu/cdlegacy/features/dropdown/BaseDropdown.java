@@ -1,5 +1,6 @@
 package com.stanuwu.cdlegacy.features.dropdown;
 
+import com.stanuwu.cdlegacy.features.IFeature;
 import com.stanuwu.cdlegacy.features.ParamCache;
 import com.stanuwu.cdlegacy.game.data.DBData;
 import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent;
@@ -10,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.time.Duration;
 
-public abstract class BaseDropdown extends ListenerAdapter {
+public abstract class BaseDropdown extends ListenerAdapter implements IFeature {
     protected final DropdownData data;
 
     public BaseDropdown() {
@@ -60,4 +61,9 @@ public abstract class BaseDropdown extends ListenerAdapter {
     }
 
     protected abstract void propagateEvent(GenericSelectMenuInteractionEvent<?, ?> event, long ownerId, String route);
+
+    @Override
+    public String getName() {
+        return this.data.name();
+    }
 }

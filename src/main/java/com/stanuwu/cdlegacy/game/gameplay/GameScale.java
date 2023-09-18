@@ -27,4 +27,8 @@ public class GameScale {
     public float armorBlock(int base, int level) {
         return base + (float) Math.floor(Math.sqrt(level) / 3f);
     }
+
+    public int health(int base, int level) {
+        return base + (int) Math.floor(base * (Math.sqrt(level) / 3f));
+    }
 }

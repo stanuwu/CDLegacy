@@ -1,5 +1,6 @@
 package com.stanuwu.cdlegacy.features.button;
 
+import com.stanuwu.cdlegacy.features.IFeature;
 import com.stanuwu.cdlegacy.features.ParamCache;
 import com.stanuwu.cdlegacy.game.data.DBData;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
@@ -7,7 +8,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.time.Duration;
 
-public abstract class BaseButton extends ListenerAdapter {
+public abstract class BaseButton extends ListenerAdapter implements IFeature {
     private final ButtonData data;
 
     public BaseButton() {
@@ -47,4 +48,9 @@ public abstract class BaseButton extends ListenerAdapter {
     }
 
     protected abstract void doButton(ButtonContext ctx);
+
+    @Override
+    public String getName() {
+        return this.data.name();
+    }
 }

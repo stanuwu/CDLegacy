@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
+import java.util.concurrent.Executors;
+
 @UtilityClass
 public class Config {
     public final String TOS = "https://docs.google.com/document/d/1TiKOlQeP6SdrC1n-QIFZHJhYAbhTUdqij0wUWoQ4fUg/edit?usp=sharing";
@@ -37,6 +39,7 @@ public class Config {
     }
 
     public void configFeatures(JDABuilder b) {
+        b.setEventPool(Executors.newCachedThreadPool());
         b.enableIntents(GatewayIntent.GUILD_MEMBERS);
         b.disableIntents(GatewayIntent.GUILD_PRESENCES, GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_TYPING);
         b.setBulkDeleteSplittingEnabled(false);
