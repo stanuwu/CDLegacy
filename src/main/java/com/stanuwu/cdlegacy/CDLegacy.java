@@ -85,12 +85,7 @@ public class CDLegacy {
         }));
 
         // TODO
-        // isGame -> features
-        // isCacheData -> interactions
-        // interactions cache
-        // interaction data
-        // db test
-        // game
+        // game -> help list
         // voting/guild count
     }
 }

@@ -12,10 +12,10 @@ public class TestCommand extends BaseCommand {
     public TestCommand() {
         super(
                 new CommandOptionData(OptionType.STRING, "value1", "Test Value 1", true),
-                new CommandOptionData(OptionType.STRING, "value2", "Test Value 2", false, new CommandOptionChoice[]{
+                new CommandOptionData(OptionType.STRING, "value2", "Test Value 2", false,
                         new CommandOptionChoice("test", "Test Value"),
                         new CommandOptionChoice("test2", "Test Value 2")
-                })
+                )
         );
     }
 

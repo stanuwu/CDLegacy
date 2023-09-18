@@ -3,7 +3,7 @@ package com.stanuwu.cdlegacy.game.content;
 import com.stanuwu.cdlegacy.game.event.EventHook;
 import lombok.Getter;
 
-public enum Armor {
+public enum Armor implements IGear {
     RAGS("Rags", "Really dirty and torn apart.", Rarity.COMMON, 0),
     ;
     @Getter

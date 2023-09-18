@@ -3,7 +3,7 @@ package com.stanuwu.cdlegacy.game.content;
 import com.stanuwu.cdlegacy.game.event.EventHook;
 import lombok.Getter;
 
-public enum Weapon {
+public enum Weapon implements IGear {
     STICK("Wooden Stick", "Could be used to hit things.", Rarity.COMMON, 3, DamageType.BLUNT),
     ;
     @Getter

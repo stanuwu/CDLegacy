@@ -1,0 +1,9 @@
+**%type%:** %item%
+**Rarity:** %rarity%
+%description%
+
+**Sell:** :coin: %price% coins
+**Infuse:** :diamond_shape_with_a_dot_inside: %infuse% EXP
+
+:no_entry_sign: Claiming will overwrite your current %ltype%.
+Drop expires %timestamp% or when a new item drops.

@@ -5,7 +5,7 @@ import lombok.Getter;
 public enum Cooldown {
     DOOR(15),
     TRAIN(5),
-    FARM(30),
+    FARM(20),
     VOTE(1440);
     @Getter
     private final int cd;

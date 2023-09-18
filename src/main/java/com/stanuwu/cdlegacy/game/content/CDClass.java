@@ -5,10 +5,10 @@ import com.stanuwu.cdlegacy.game.event.Events;
 import lombok.Getter;
 
 public enum CDClass {
-    ADVENTURER("Adventurer", "Receive a 5% exp bonus.", new EventHook(
+    ADVENTURER("Adventurer", "Receive a 5% EXP bonus.", new EventHook(
             Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 1.05)))
     )),
-    SAGE("Sage", "Receive a 7% exp bonus.", new EventHook(
+    SAGE("Sage", "Receive a 7% EXP bonus.", new EventHook(
             Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 1.07)))
     ), Requirement.LEGACY),
     THIEF("Thief", "Receive a 5% coin bonus.", new EventHook(

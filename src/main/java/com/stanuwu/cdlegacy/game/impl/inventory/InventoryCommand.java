@@ -14,7 +14,7 @@ public class InventoryCommand extends BaseCommand {
         DBUser user = ctx.getUser();
         StringBuilder desc = new StringBuilder();
         boolean alternate = false;
-        for (DBInv.Entry item : user.getInv().toEntrySet()) {
+        for (DBInv.Entry item : user.getInv().toEntrySetOwned()) {
             alternate = !alternate;
             desc.append(alternate ? ":small_blue_diamond: " : ":small_orange_diamond: ").append(item.amount()).append("x ").append(item.item().getName()).append("\n");
         }

@@ -14,11 +14,11 @@ import net.dv8tion.jda.api.interactions.components.buttons.ButtonStyle;
 public class QuestCommand extends BaseCommand {
     public static MessageEmbed getEmbed(DBUser user) {
         if (user.getQuest().getType().isNone()) {
-            return Embeds.small("Quest").description(":no_entry_sign: No active quest.").build();
+            return Embeds.small("Quest").description(":no_entry_sign: " + user.getQuest().getType().getDescription()).build();
         } else if (user.getQuest().isDone()) {
             return Embeds.small("Quest").description(":white_check_mark: Quest completed.").build();
         } else {
-            return Embeds.small("Quest").description(":notepad_spiral: " + user.getQuest().desc()).build();
+            return Embeds.small("Quest").description(":notepad_spiral: **" + user.getQuest().getType().getName() + ":** " + user.getQuest().desc()).build();
         }
     }
 

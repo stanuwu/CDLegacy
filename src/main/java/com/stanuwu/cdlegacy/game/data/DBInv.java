@@ -19,7 +19,7 @@ public class DBInv {
     private final Map<Item, Long> inv = new ConcurrentHashMap<>();
 
     public boolean has(Item item) {
-        return inv.containsKey(item);
+        return amount(item) > 0;
     }
 
     public long amount(Item item) {
@@ -32,17 +32,13 @@ public class DBInv {
 
     public synchronized void remove(Item item, long amount) {
         long after = inv.getOrDefault(item, 0L) - amount;
-        if (after > 0) inv.put(item, after);
-        else inv.remove(item);
+        inv.put(item, after);
     }
 
     public synchronized boolean hasDoRemove(Item item, long amount) {
         long after = inv.getOrDefault(item, 0L) - amount;
-        if (after > 0) {
+        if (after >= 0) {
             inv.put(item, after);
-            return true;
-        } else if (after > -1) {
-            inv.remove(item);
             return true;
         }
         return false;
@@ -56,11 +52,7 @@ public class DBInv {
             result.add(new Entry(e.item, after));
         }
         for (Entry res : result) {
-            if (res.amount > 0) {
-                inv.put(res.item, res.amount);
-            } else {
-                inv.remove(res.item);
-            }
+            inv.put(res.item, res.amount);
         }
         return true;
     }
@@ -68,6 +60,14 @@ public class DBInv {
     public Set<Entry> toEntrySet() {
         Set<Entry> set = new HashSet<>();
         inv.forEach((i, c) -> set.add(new Entry(i, c)));
+        return set;
+    }
+
+    public Set<Entry> toEntrySetOwned() {
+        Set<Entry> set = new HashSet<>();
+        inv.forEach((i, c) -> {
+            if (c > 0) set.add(new Entry(i, c));
+        });
         return set;
     }
 

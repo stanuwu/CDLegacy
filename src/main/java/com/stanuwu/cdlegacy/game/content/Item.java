@@ -7,6 +7,8 @@ public enum Item {
     DIAMOND("Diamond"),
     WOOD("Wood"),
     GOLDEN_LEAF("Golden Leaf"),
+    LEATHER("Leather"),
+    WOLF_TOOTH("Wolf Tooth"),
     ;
     @Getter
     private final String name;

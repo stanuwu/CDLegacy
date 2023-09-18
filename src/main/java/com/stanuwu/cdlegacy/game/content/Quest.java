@@ -8,16 +8,16 @@ import java.util.Random;
 
 public enum Quest {
     NONE("No Quest Active", "You don't have an active quest.", 1, 1, 0, 0, EventHook.NONE),
-    SLAY("Slay Monsters", "Slay %diff% more monsters.", 5, 5, 100, 50, new EventHook(
+    SLAY("Monster Slayer", "Slay %diff% more monster(s).", 3, 5, 100, 50, new EventHook(
             Events.SLAY_MONSTER.make(e -> e.user.getQuest().progress())
     )),
-    EXPLORE("Explore", "Gain %diff% more exp.", 100, 5, 50, 25, new EventHook(
+    EXPLORE("Explorer", "Gain %diff% more EXP.", 100, 5, 50, 25, new EventHook(
             Events.OBTAIN_EXP.make(e -> e.user.getQuest().progress(e.exp.get()))
     )),
-    TRAIN("Train", "Train %diff% more times.", 2, 3, 50, 25, new EventHook(
+    TRAIN("Trainer", "Train %diff% more time(s).", 4, 3, 50, 25, new EventHook(
             Events.TRAIN.make(e -> e.user.getQuest().progress())
     )),
-    FARM("Farm", "Farm %diff% more times.", 1, 3, 100, 50, new EventHook(
+    FARM("Farmer", "Farm %diff% more time(s).", 1, 3, 100, 50, new EventHook(
             Events.FARM.make(e -> e.user.getQuest().progress())
     )),
     ;

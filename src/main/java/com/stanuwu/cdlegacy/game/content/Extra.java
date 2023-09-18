@@ -3,8 +3,8 @@ package com.stanuwu.cdlegacy.game.content;
 import com.stanuwu.cdlegacy.game.event.EventHook;
 import lombok.Getter;
 
-public enum Extra {
-    PENDANT("Pendant", "A small, ochre amulet.", Rarity.COMMON, DamageType.BLUNT),
+public enum Extra implements IGear {
+    PENDANT("Pendant", "A small, ochre amulet.", Rarity.COMMON),
     ;
     @Getter
     private final String name;
@@ -13,23 +13,19 @@ public enum Extra {
     @Getter
     private final Rarity rarity;
     @Getter
-    private final DamageType damageType;
-    @Getter
     private final EventHook event;
 
-    Extra(String name, String description, Rarity rarity, DamageType damageType, EventHook event) {
+    Extra(String name, String description, Rarity rarity, EventHook event) {
         this.name = name;
         this.description = description;
         this.rarity = rarity;
-        this.damageType = damageType;
         this.event = event;
     }
 
-    Extra(String name, String description, Rarity rarity, DamageType damageType) {
+    Extra(String name, String description, Rarity rarity) {
         this.name = name;
         this.description = description;
         this.rarity = rarity;
-        this.damageType = damageType;
         this.event = EventHook.NONE;
     }
 }

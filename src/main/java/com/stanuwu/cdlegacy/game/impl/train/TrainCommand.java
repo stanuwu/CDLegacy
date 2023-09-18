@@ -51,12 +51,12 @@ public class TrainCommand extends BaseCommand {
                 Events.OBTAIN_EXP_GEAR.invoke(new EventObtainExpGear(user, guild, weapon, Ref.of(GearType.WEAPON)));
                 Events.OBTAIN_EXP_GEAR.invoke(new EventObtainExpGear(user, guild, armor, Ref.of(GearType.ARMOR)));
                 Events.OBTAIN_EXP_GEAR.invoke(new EventObtainExpGear(user, guild, extra, Ref.of(GearType.EXTRA)));
-                gain.append("+").append(weapon.get()).append(" ").append(GearType.WEAPON.formatName()).append(" exp\n");
-                gain.append("+").append(armor.get()).append(" ").append(GearType.ARMOR.formatName()).append(" exp\n");
-                gain.append("+").append(extra.get()).append(" ").append(GearType.EXTRA.formatName()).append(" exp");
+                gain.append("+").append(weapon.get()).append(" ").append(GearType.WEAPON.formatName()).append(" EXP\n");
+                gain.append("+").append(armor.get()).append(" ").append(GearType.ARMOR.formatName()).append(" EXP\n");
+                gain.append("+").append(extra.get()).append(" ").append(GearType.EXTRA.formatName()).append(" EXP");
             } else {
                 Events.OBTAIN_EXP_GEAR.invoke(new EventObtainExpGear(user, guild, weapon, Ref.of(type)));
-                gain.append("+").append(weapon.get()).append(" ").append(type.formatName()).append(" exp.");
+                gain.append("+").append(weapon.get()).append(" ").append(type.formatName()).append(" EXP");
             }
             Events.TRAIN.invoke(new EventTrain(user, guild, all ? null : type));
             ctx.reply(Embeds.small("Train").description(new String(gain)).build()).send();

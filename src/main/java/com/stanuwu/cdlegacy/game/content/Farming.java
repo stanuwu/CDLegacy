@@ -4,7 +4,9 @@ import lombok.Getter;
 
 public enum Farming {
     MINING("Mining", ":pick:", Item.STONE, Item.DIAMOND),
-    FORAGING("Foraging", ":axe:", Item.WOOD, Item.GOLDEN_LEAF);
+    FORAGING("Foraging", ":axe:", Item.WOOD, Item.GOLDEN_LEAF),
+    HUNTING("Hunting", ":bow_and_arrow:", Item.LEATHER, Item.WOLF_TOOTH),
+    ;
     @Getter
     private final String name;
     @Getter

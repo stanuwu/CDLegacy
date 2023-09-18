@@ -7,7 +7,7 @@ import com.stanuwu.cdlegacy.features.command.CommandData;
 
 @CommandData(name = "testdb", staffCommand = true)
 public class TestDBCommand extends BaseCommand {
-    private DB database;
+    private final DB database;
 
     public TestDBCommand(DB database) {
         this.database = database;

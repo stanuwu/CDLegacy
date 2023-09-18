@@ -7,9 +7,13 @@ import com.stanuwu.cdlegacy.game.impl.cdclass.ClassDropdown;
 import com.stanuwu.cdlegacy.game.impl.character.CharacterCommand;
 import com.stanuwu.cdlegacy.game.impl.coinflip.CoinflipButton;
 import com.stanuwu.cdlegacy.game.impl.coinflip.CoinflipCommand;
+import com.stanuwu.cdlegacy.game.impl.craft.CraftButton;
+import com.stanuwu.cdlegacy.game.impl.craft.CraftCommand;
+import com.stanuwu.cdlegacy.game.impl.craft.CraftDropdown;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteButton;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteCommand;
 import com.stanuwu.cdlegacy.game.impl.description.DescriptionCommand;
+import com.stanuwu.cdlegacy.game.impl.drop.DropButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmDropdown;
@@ -98,6 +102,14 @@ public class Features {
                 // Quest
                 new QuestCommand(),
                 new QuestButton(),
+
+                // Craft
+                new CraftCommand(),
+                new CraftButton(),
+                new CraftDropdown(),
+
+                // Drop
+                new DropButton(),
         };
     }
 

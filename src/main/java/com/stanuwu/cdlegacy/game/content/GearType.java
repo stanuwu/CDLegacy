@@ -32,4 +32,11 @@ public enum GearType {
     public String formatName() {
         return this.getEmoji() + " " + this.getName();
     }
+
+    public static GearType fromGear(IGear gear) {
+        for (GearType type : GearType.values()) {
+            if (type.getType() == gear.getClass()) return type;
+        }
+        return GearType.WEAPON;
+    }
 }
