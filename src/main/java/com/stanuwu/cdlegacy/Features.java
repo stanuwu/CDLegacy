@@ -23,6 +23,9 @@ import com.stanuwu.cdlegacy.game.impl.quest.QuestButton;
 import com.stanuwu.cdlegacy.game.impl.quest.QuestCommand;
 import com.stanuwu.cdlegacy.game.impl.rename.RenameCommand;
 import com.stanuwu.cdlegacy.game.impl.server.ServerCommand;
+import com.stanuwu.cdlegacy.game.impl.shop.ShopButton;
+import com.stanuwu.cdlegacy.game.impl.shop.ShopCommand;
+import com.stanuwu.cdlegacy.game.impl.shop.ShopDropdown;
 import com.stanuwu.cdlegacy.game.impl.slots.SlotsCommand;
 import com.stanuwu.cdlegacy.game.impl.start.StartButton;
 import com.stanuwu.cdlegacy.game.impl.start.StartCommand;
@@ -110,6 +113,11 @@ public class Features {
 
                 // Drop
                 new DropButton(),
+
+                // Shop
+                new ShopCommand(),
+                new ShopButton(),
+                new ShopDropdown(),
         };
     }
 

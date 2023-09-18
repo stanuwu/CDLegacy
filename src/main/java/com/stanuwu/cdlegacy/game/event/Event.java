@@ -13,7 +13,7 @@ public abstract class Event {
     public final DBUser user;
     public final DBGuild guild;
 
-    protected Event(DBUser user, DBGuild guild) {
+    public Event(DBUser user, DBGuild guild) {
         this.user = user;
         this.guild = guild;
     }

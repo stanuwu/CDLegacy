@@ -5,7 +5,10 @@ import com.stanuwu.cdlegacy.features.button.Buttons;
 import com.stanuwu.cdlegacy.game.content.GearType;
 import com.stanuwu.cdlegacy.game.content.IGear;
 import com.stanuwu.cdlegacy.game.data.DBEnum;
+import com.stanuwu.cdlegacy.game.data.DBGuild;
 import com.stanuwu.cdlegacy.game.data.DBUser;
+import com.stanuwu.cdlegacy.game.event.Events;
+import com.stanuwu.cdlegacy.game.event.events.EventGearDrop;
 import com.stanuwu.cdlegacy.message.Placeholder;
 import com.stanuwu.cdlegacy.message.ReplyContext;
 import com.stanuwu.cdlegacy.message.embeds.Embeds;
@@ -18,8 +21,9 @@ import java.time.LocalDateTime;
 
 @UtilityClass
 public class Game {
-    public void dropGear(DBUser user, ReplyContext reply, IGear gear, LocalDateTime time) {
+    public void dropGear(DBUser user, DBGuild guild, ReplyContext reply, IGear gear, LocalDateTime time) {
         GearType type = GearType.fromGear(gear);
+        Events.GEAR_DROP.invoke(new EventGearDrop(user, guild, gear));
         reply.embeds(
                         Embeds.small(gear.getRarity().getName() + " Drop")
                                 .langDescription("drop-desc",
@@ -54,12 +58,10 @@ public class Game {
                                 Emojis.DIAMOND_SHAPE_WITH_A_DOT_INSIDE
                         ).route("infuse").build()
                 )
-                .send().then(m -> {
-                    ParamCache.start("drop-button", m.getIdLong())
-                            .putString("type", DBEnum.toKey(type))
-                            .putString("gear", gear.name())
-                            .putString("rarity", DBEnum.toKey(gear.getRarity()))
-                            .end();
-                });
+                .send().then(m -> ParamCache.start("drop-button", m.getIdLong())
+                        .putString("type", DBEnum.toKey(type))
+                        .putString("gear", gear.name())
+                        .putString("rarity", DBEnum.toKey(gear.getRarity()))
+                        .end());
     }
 }

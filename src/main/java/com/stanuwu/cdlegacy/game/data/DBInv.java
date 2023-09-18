@@ -72,6 +72,5 @@ public class DBInv {
     }
 
     public record Entry(Item item, long amount) {
-
     }
 }

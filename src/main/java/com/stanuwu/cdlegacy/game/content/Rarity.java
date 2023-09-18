@@ -2,6 +2,8 @@ package com.stanuwu.cdlegacy.game.content;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public enum Rarity {
@@ -48,5 +50,19 @@ public enum Rarity {
             }
         }
         return current;
+    }
+
+    public IGear getRandomItemFor() {
+        List<IGear> candidates = new ArrayList<>();
+        for (Weapon w : Weapon.values()) {
+            if (w.getRarity() == this) candidates.add(w);
+        }
+        for (Armor a : Armor.values()) {
+            if (a.getRarity() == this) candidates.add(a);
+        }
+        for (Extra e : Extra.values()) {
+            if (e.getRarity() == this) candidates.add(e);
+        }
+        return candidates.get(new Random().nextInt(0, candidates.size()));
     }
 }

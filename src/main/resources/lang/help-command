@@ -20,7 +20,7 @@
 `/coinflip` Flip a coin and wager money.
 `/slots` Play slots for money.
 `/craft` Craft gear with your items.
-`/shop` Buy chests and items. (WIP)
+`/shop` Buy chests and items.
 
 **Leaderboards**
 `/exptop` View the level leaderboard. (WIP)

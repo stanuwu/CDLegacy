@@ -14,6 +14,7 @@ public class Events {
     public final EventCaller<EventSlayMonster> SLAY_MONSTER = new EventCaller<>();
     public final EventCaller<EventFarm> FARM = new EventCaller<>();
     public final EventCaller<EventTrain> TRAIN = new EventCaller<>();
+    public final EventCaller<EventGearDrop> GEAR_DROP = new EventCaller<>();
 
     public static class EventCaller<T extends Event> {
         public void invoke(T event) {
