@@ -12,6 +12,8 @@ public class Events {
     public final EventCaller<EventObtainExpGear> OBTAIN_EXP_GEAR = new EventCaller<>();
     public final EventCaller<EventObtainItem> OBTAIN_ITEM = new EventCaller<>();
     public final EventCaller<EventSlayMonster> SLAY_MONSTER = new EventCaller<>();
+    public final EventCaller<EventFarm> FARM = new EventCaller<>();
+    public final EventCaller<EventTrain> TRAIN = new EventCaller<>();
 
     public static class EventCaller<T extends Event> {
         public void invoke(T event) {

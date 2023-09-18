@@ -27,14 +27,6 @@ public class DBQuest {
         return this.req() - this.getProgress();
     }
 
-    public int money() {
-        return this.getType().getMoney() * this.getLevel();
-    }
-
-    public int exp() {
-        return this.getType().getExp() * this.getLevel();
-    }
-
     public String desc() {
         return this.getType().getDescription()
                 .replaceAll("%req%", "" + this.req())
@@ -60,5 +52,17 @@ public class DBQuest {
 
     public synchronized void progress() {
         this.progress++;
+    }
+
+    public synchronized void progress(int progress) {
+        this.progress += progress;
+    }
+
+    public int getExpReward() {
+        return this.type.getExp() * this.level;
+    }
+
+    public int getMoneyReward() {
+        return this.type.getMoney() * this.level;
     }
 }

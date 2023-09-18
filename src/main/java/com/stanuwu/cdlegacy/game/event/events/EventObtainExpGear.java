@@ -1,7 +1,6 @@
 package com.stanuwu.cdlegacy.game.event.events;
 
 import com.stanuwu.cdlegacy.game.content.GearType;
-import com.stanuwu.cdlegacy.game.content.Weapon;
 import com.stanuwu.cdlegacy.game.data.DBGuild;
 import com.stanuwu.cdlegacy.game.data.DBUser;
 import com.stanuwu.cdlegacy.game.event.Event;

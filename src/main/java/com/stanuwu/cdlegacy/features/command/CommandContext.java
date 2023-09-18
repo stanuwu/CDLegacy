@@ -49,6 +49,21 @@ public class CommandContext {
         return new ReplyContext(command.slowCommand(), event).text(text);
     }
 
+    @CheckReturnValue
+    public ReplyContext message() {
+        return new ReplyContext(true, event);
+    }
+
+    @CheckReturnValue
+    public ReplyContext message(MessageEmbed embed) {
+        return new ReplyContext(true, event).embeds(embed);
+    }
+
+    @CheckReturnValue
+    public ReplyContext message(String text) {
+        return new ReplyContext(true, event).text(text);
+    }
+
     public String getArg(String argName) {
         OptionMapping option = event.getOption(argName);
         if (option != null) return option.getAsString();

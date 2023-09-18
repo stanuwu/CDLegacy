@@ -6,16 +6,16 @@ import lombok.Getter;
 
 public enum CDClass {
     ADVENTURER("Adventurer", "Receive a 5% exp bonus.", new EventHook(
-            Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 0.05)))
+            Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 1.05)))
     )),
     SAGE("Sage", "Receive a 7% exp bonus.", new EventHook(
-            Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 0.07)))
+            Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * 1.07)))
     ), Requirement.LEGACY),
     THIEF("Thief", "Receive a 5% coin bonus.", new EventHook(
-            Events.OBTAIN_COINS.make(e -> e.coins.op(c -> (int) (c * 0.05)))
+            Events.OBTAIN_COINS.make(e -> e.coins.op(c -> (int) (c * 1.05)))
     )),
     BRAWLER("Brawler", "Receive a 5% blunt weapon damage bonus.", new EventHook(
-            
+
     ), Requirement.level(5)),
     FARMER("Farmer", "Get an additional item while farming.", new EventHook(
             Events.OBTAIN_ITEM.make(e -> e.count.op(c -> ++c))

@@ -9,7 +9,9 @@ import lombok.Getter;
 import java.util.Locale;
 
 public class DBGuild {
-    private final EventHook event = new EventHook();
+    private final EventHook event = new EventHook(
+            Events.OBTAIN_EXP.make(e -> e.exp.op(ex -> (int) (ex * (1 + xpBonus()))))
+    );
     @Getter
     private final long guildId;
     @Getter

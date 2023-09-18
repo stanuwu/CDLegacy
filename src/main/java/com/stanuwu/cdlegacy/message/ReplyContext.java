@@ -11,6 +11,7 @@ import net.dv8tion.jda.api.interactions.components.ItemComponent;
 import net.dv8tion.jda.api.requests.RestAction;
 import net.dv8tion.jda.api.utils.FileUpload;
 import net.dv8tion.jda.api.utils.messages.MessageCreateRequest;
+import org.slf4j.helpers.CheckReturnValue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,42 +32,48 @@ public class ReplyContext {
     protected boolean hidden = false;
     protected final List<ItemComponent[]> actionRows = new ArrayList<>();
 
-
     public ReplyContext(boolean slow, GenericInteractionCreateEvent event) {
         this.slow = slow;
         this.event = event;
     }
 
+    @CheckReturnValue
     public ReplyContext text(String text) {
         this.message = text;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext tts() {
         this.tts = true;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext embeds(MessageEmbed... embeds) {
         this.embeds = embeds;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext files(FileUpload... files) {
         this.files = files;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext silent() {
         this.silent = true;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext hidden() {
         this.hidden = true;
         return this;
     }
 
+    @CheckReturnValue
     public ReplyContext actionRow(ItemComponent... actionRows) {
         this.actionRows.add(actionRows);
         return this;
@@ -75,15 +82,17 @@ public class ReplyContext {
     public ReplyFuture send() {
         MessageCreateRequest<?> req;
         if (event instanceof SlashCommandInteractionEvent e) {
-            if (slow) req = e.getHook().sendMessage(message).setEphemeral(hidden);
+            if (slow) req = e.getHook().retrieveOriginal().complete().reply(message);
             else req = e.reply(message).setEphemeral(hidden);
             return doSend(req);
         } else if (event instanceof ButtonInteractionEvent e) {
-            if (slow) req = e.getHook().sendMessage(message).setEphemeral(hidden);
+            if (slow) req = e.getHook().retrieveOriginal().complete().reply(message);
             else req = e.reply(message).setEphemeral(hidden);
             return doSend(req);
         } else if (event instanceof GenericSelectMenuInteractionEvent<?, ?> e) {
-            return doSend(e.getHook().sendMessage(message).setEphemeral(hidden));
+            if (slow) req = e.getHook().retrieveOriginal().complete().reply(message);
+            else req = e.getHook().sendMessage(message).setEphemeral(hidden);
+            return doSend(req);
         }
         return null;
     }

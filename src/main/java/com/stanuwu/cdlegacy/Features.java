@@ -15,6 +15,8 @@ import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmDropdown;
 import com.stanuwu.cdlegacy.game.impl.help.HelpCommand;
 import com.stanuwu.cdlegacy.game.impl.inventory.InventoryCommand;
+import com.stanuwu.cdlegacy.game.impl.quest.QuestButton;
+import com.stanuwu.cdlegacy.game.impl.quest.QuestCommand;
 import com.stanuwu.cdlegacy.game.impl.rename.RenameCommand;
 import com.stanuwu.cdlegacy.game.impl.server.ServerCommand;
 import com.stanuwu.cdlegacy.game.impl.slots.SlotsCommand;
@@ -92,6 +94,10 @@ public class Features {
 
                 // Train
                 new TrainCommand(),
+
+                // Quest
+                new QuestCommand(),
+                new QuestButton(),
         };
     }
 

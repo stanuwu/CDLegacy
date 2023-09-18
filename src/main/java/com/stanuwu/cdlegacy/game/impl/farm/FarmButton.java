@@ -8,6 +8,7 @@ import com.stanuwu.cdlegacy.game.content.Item;
 import com.stanuwu.cdlegacy.game.data.DBUser;
 import com.stanuwu.cdlegacy.game.event.Events;
 import com.stanuwu.cdlegacy.game.event.Ref;
+import com.stanuwu.cdlegacy.game.event.events.EventFarm;
 import com.stanuwu.cdlegacy.game.event.events.EventObtainItem;
 import com.stanuwu.cdlegacy.message.embeds.Embeds;
 import com.stanuwu.cdlegacy.util.Timestamps;
@@ -28,7 +29,8 @@ public class FarmButton extends BaseButton {
             Ref<Item> gain = Ref.of(rare ? farming.getRare() : farming.getCommon());
             Ref<Integer> count = Ref.of(rare ? 1 : random.nextInt(1, 4));
             Events.OBTAIN_ITEM.invoke(new EventObtainItem(user, ctx.getGuild(), gain, count));
-            ctx.reply(Embeds.success("You obtained " + count.get() + "x " + gain.get().getName() + ".").build()).send();
+            Events.FARM.invoke(new EventFarm(user, ctx.getGuild(), farming));
+            ctx.reply(Embeds.success("+" + count.get() + " " + gain.get().getName()).build()).send();
         } else {
             ctx.reply(Embeds.error("You can farm again " + Timestamps.toTimestamp(TimeFormat.RELATIVE, user.canFarmAt()) + ".").build()).send();
         }

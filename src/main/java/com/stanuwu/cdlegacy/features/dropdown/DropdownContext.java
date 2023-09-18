@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.interaction.component.GenericSelectMenuInteractionEvent;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
 import net.dv8tion.jda.api.interactions.components.selections.SelectMenu;
+import org.slf4j.helpers.CheckReturnValue;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -46,16 +47,34 @@ public abstract class DropdownContext {
         }
     }
 
+    @CheckReturnValue
     public InteractionReplyContext reply() {
         return new InteractionReplyContext(dropdown.slow(), event);
     }
 
+    @CheckReturnValue
     public InteractionReplyContext reply(MessageEmbed embed) {
         return new InteractionReplyContext(dropdown.slow(), event).embeds(embed);
     }
 
+    @CheckReturnValue
     public InteractionReplyContext reply(String text) {
         return new InteractionReplyContext(dropdown.slow(), event).text(text);
+    }
+
+    @CheckReturnValue
+    public InteractionReplyContext message() {
+        return new InteractionReplyContext(true, event);
+    }
+
+    @CheckReturnValue
+    public InteractionReplyContext message(MessageEmbed embed) {
+        return new InteractionReplyContext(true, event).embeds(embed);
+    }
+
+    @CheckReturnValue
+    public InteractionReplyContext message(String text) {
+        return new InteractionReplyContext(true, event).text(text);
     }
 
     public void disable() {
