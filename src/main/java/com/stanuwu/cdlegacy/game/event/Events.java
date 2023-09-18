@@ -1,9 +1,6 @@
 package com.stanuwu.cdlegacy.game.event;
 
-import com.stanuwu.cdlegacy.game.event.events.EventObtainCoins;
-import com.stanuwu.cdlegacy.game.event.events.EventObtainExp;
-import com.stanuwu.cdlegacy.game.event.events.EventObtainItem;
-import com.stanuwu.cdlegacy.game.event.events.EventSlayMonster;
+import com.stanuwu.cdlegacy.game.event.events.*;
 import lombok.experimental.UtilityClass;
 
 import java.util.function.Consumer;
@@ -12,6 +9,7 @@ import java.util.function.Consumer;
 public class Events {
     public final EventCaller<EventObtainCoins> OBTAIN_COINS = new EventCaller<>();
     public final EventCaller<EventObtainExp> OBTAIN_EXP = new EventCaller<>();
+    public final EventCaller<EventObtainExpGear> OBTAIN_EXP_GEAR = new EventCaller<>();
     public final EventCaller<EventObtainItem> OBTAIN_ITEM = new EventCaller<>();
     public final EventCaller<EventSlayMonster> SLAY_MONSTER = new EventCaller<>();
 

@@ -16,7 +16,7 @@ public final class CommandOptionData {
     private final CommandOptionChoice[] choices;
 
     public CommandOptionData(OptionType type, String name, String description, boolean required,
-                             CommandOptionChoice[] choices) {
+                             CommandOptionChoice... choices) {
         this.type = type;
         this.name = name;
         this.description = description;

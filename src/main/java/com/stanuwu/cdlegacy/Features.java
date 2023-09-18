@@ -23,6 +23,7 @@ import com.stanuwu.cdlegacy.game.impl.start.StartCommand;
 import com.stanuwu.cdlegacy.game.impl.stats.StatsCommand;
 import com.stanuwu.cdlegacy.game.impl.title.TitleCommand;
 import com.stanuwu.cdlegacy.game.impl.title.TitleDropdown;
+import com.stanuwu.cdlegacy.game.impl.train.TrainCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -87,7 +88,10 @@ public class Features {
                 // Farm
                 new FarmCommand(),
                 new FarmButton(),
-                new FarmDropdown()
+                new FarmDropdown(),
+
+                // Train
+                new TrainCommand(),
         };
     }
 

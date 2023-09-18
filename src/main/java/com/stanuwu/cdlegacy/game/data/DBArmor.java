@@ -22,6 +22,11 @@ public class DBArmor {
         this.exp = 0;
     }
 
+    public synchronized void addExp(int exp) {
+        this.exp += exp;
+    }
+
+
     public int getLevel() {
         return GameScale.gearLevel(this.getExp());
     }
