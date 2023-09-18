@@ -24,7 +24,7 @@ import java.util.List;
 public class CraftCommand extends BaseCommand {
     public static MessageEmbed getEmbed(CraftingRecipe recipe) {
         return Embeds.small("Craft").langDescription("craft-command",
-                new Placeholder("type", GearType.fromGear(recipe.getGear()).formatName()),
+                new Placeholder("type", GearType.fromGear(recipe.getGear()).getEmoji()),
                 new Placeholder("item", recipe.getGear().getName()),
                 new Placeholder("rarity", recipe.getGear().getRarity().getName()),
                 new Placeholder("description", recipe.getGear().getDescription()),

@@ -27,7 +27,7 @@ public class Game {
         reply.embeds(
                         Embeds.small(gear.getRarity().getName() + " Drop")
                                 .langDescription("drop-desc",
-                                        new Placeholder("type", type.formatName()),
+                                        new Placeholder("type", type.getEmoji()),
                                         new Placeholder("item", gear.getName()),
                                         new Placeholder("rarity", gear.getRarity().getName()),
                                         new Placeholder("description", gear.getDescription()),
