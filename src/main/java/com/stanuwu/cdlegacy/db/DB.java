@@ -257,6 +257,7 @@ public class DB {
                 param.addValue("$1", user.getUserId());
                 param.addValue("$2", DBEnum.toKey(e.item()));
                 param.addValue("$3", e.amount());
+                params.add(param);
             }
         }
         template.batchUpdate(getQuery(query), params.toArray(new MapSqlParameterSource[0]));

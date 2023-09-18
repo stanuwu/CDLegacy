@@ -20,7 +20,7 @@ import java.util.List;
 public class FarmCommand extends BaseCommand {
     static MessageEmbed getEmbed(DBUser user) {
         return Embeds.small("Farm")
-                .description(user.getFarming().getEmoji() + " " + user.getFarming().getName())
+                .description("**Currently Farming:** " + user.getFarming().getEmoji() + " " + user.getFarming().getName())
                 .build();
     }
 
