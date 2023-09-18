@@ -96,8 +96,7 @@ public class ReplyContext {
         }
         return null;
     }
-
-    @SuppressWarnings("unchecked")
+    
     private ReplyFuture doSend(MessageCreateRequest<?> req) {
         req
                 .setTTS(tts)
