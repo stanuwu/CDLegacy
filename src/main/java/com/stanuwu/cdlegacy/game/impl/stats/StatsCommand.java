@@ -19,6 +19,7 @@ public class StatsCommand extends BaseCommand {
                                 new Placeholder("weapon_desc", user.getWeapon().getType().getDescription()),
                                 new Placeholder("weapon_lvl", user.getWeapon().formatLevel()),
                                 new Placeholder("weapon_damage", "" + user.getWeapon().getDamage()),
+                                new Placeholder("weapon_type", user.getWeapon().getType().formatType()),
                                 new Placeholder("armor", user.getArmor().getType().getName()),
                                 new Placeholder("armor_desc", user.getArmor().getType().getDescription()),
                                 new Placeholder("armor_lvl", user.getArmor().formatLevel()),

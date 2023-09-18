@@ -3,8 +3,8 @@ package com.stanuwu.cdlegacy.game.content;
 import lombok.Getter;
 
 public enum DamageArchtype {
-    PHYSICAL_CLOSE("Close"),
-    PHYSICAL_FAR("Ranged"),
+    PHYSICAL_CLOSE("Close Range"),
+    PHYSICAL_FAR("Long Range"),
     MAGIC("Magic"),
     ;
     @Getter

@@ -36,4 +36,8 @@ public enum Weapon {
         this.damageType = damageType;
         this.event = EventHook.NONE;
     }
+
+    public String formatType() {
+        return this.getDamageType().getName() + " (" + this.getDamageType().getArchtype().getName() + ")";
+    }
 }

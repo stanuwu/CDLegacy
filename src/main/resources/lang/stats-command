@@ -1,14 +1,15 @@
-:dagger: %weapon%
+### :dagger: %weapon%
 **%weapon_lvl%**
 **Damage: ** %weapon_damage%
+**Type: ** %weapon_type%
 %weapon_desc%
 
-:shield: %armor%
+### :shield: %armor%
 **%armor_lvl%**
 **Block: ** %armor_block%%
 %armor_desc%
 
-:crystal_ball: %extra%
+### :crystal_ball: %extra%
 **%extra_lvl%**
 %extra_desc%
 

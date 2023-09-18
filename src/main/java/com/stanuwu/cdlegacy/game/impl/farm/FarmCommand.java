@@ -8,6 +8,7 @@ import com.stanuwu.cdlegacy.features.dropdown.Dropdowns;
 import com.stanuwu.cdlegacy.game.content.Farming;
 import com.stanuwu.cdlegacy.game.data.DBEnum;
 import com.stanuwu.cdlegacy.game.data.DBUser;
+import com.stanuwu.cdlegacy.message.Placeholder;
 import com.stanuwu.cdlegacy.message.embeds.Embeds;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
@@ -20,7 +21,10 @@ import java.util.List;
 public class FarmCommand extends BaseCommand {
     static MessageEmbed getEmbed(DBUser user) {
         return Embeds.small("Farm")
-                .description("**Currently Farming:** " + user.getFarming().getEmoji() + " " + user.getFarming().getName())
+                .langDescription("farm-command",
+                        new Placeholder("emoji", user.getFarming().getEmoji()),
+                        new Placeholder("name", user.getFarming().getName())
+                )
                 .build();
     }
 
