@@ -2,6 +2,7 @@ package com.stanuwu.cdlegacy;
 
 import com.stanuwu.cdlegacy.db.DB;
 import com.stanuwu.cdlegacy.game.data.DBData;
+import com.stanuwu.cdlegacy.game.gameplay.Leaderboards;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.Logger;
@@ -62,6 +63,10 @@ public class CDLegacy {
         }
 
         logger.info("BOT STARTED");
+
+        logger.info("STARTING LEADERBOARDS THREAD");
+        new Leaderboards(JDA).init();
+        logger.info("STARTED LEADERBOARDS THREAD");
 
         logger.info("REGISTERING FEATURES");
         features.registerPost(JDA, modeDev, devGuild);

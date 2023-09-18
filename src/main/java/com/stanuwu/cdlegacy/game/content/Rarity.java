@@ -14,8 +14,8 @@ public enum Rarity {
     LEGENDARY("Legendary", true, 30000, 10000, 2500, 150),
     UNSTABLE("Unstable", true, 50000, 25000, 6500, 20),
     CORRUPTED("Corrupted", true, 100000, 50000, 15000, 2),
-    UNIQUE("Unique", false, Integer.MAX_VALUE, 100000, 25000, -1),
-    CRAFTED("Crafted", false, Integer.MAX_VALUE, 0, 0, -1),
+    UNIQUE("Unique", false, 250000, 150000, 25000, -1),
+    CRAFTED("Crafted", false, 0, 0, 0, -1),
     ;
     @Getter
     private final String name;

@@ -12,8 +12,8 @@
 `/door` Open a new dungeon room. (WIP)
 `/farm` Farm some items.
 `/train` Train with your gear.
-`/boss` Summon and fight a boss. (WIP)
 `/quest` Accept and complete quests.
+`/boss` Summon and fight a boss. (Coming soon:tm:)
 
 **Inventory**
 `/inventory` View your inventory.
@@ -23,10 +23,7 @@
 `/shop` Buy chests and items.
 
 **Leaderboards**
-`/exptop` View the level leaderboard. (WIP)
-`/coinstop` View the coin leaderboard. (WIP)
-`/geartop` View the gear leaderboard. (WIP)
-`/servertop` View the server level leaderboard. (WIP)
+`/top` View the leaderboards.
 
 **Misc**
 `/help` View this menu.

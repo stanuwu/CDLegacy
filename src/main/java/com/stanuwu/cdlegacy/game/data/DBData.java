@@ -5,6 +5,7 @@ import lombok.experimental.UtilityClass;
 import org.slf4j.Logger;
 import org.slf4j.simple.SimpleLoggerFactory;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -38,6 +39,10 @@ public class DBData {
         return user;
     }
 
+    public Collection<DBUser> getUsers() {
+        return users.values();
+    }
+
     public boolean makeUser(long userId, String name) {
         if (users.containsKey(userId)) return false;
         users.put(userId, new DBUser(userId, name));
@@ -50,5 +55,9 @@ public class DBData {
 
     public DBGuild getGuild(long guildId) {
         return guilds.computeIfAbsent(guildId, g -> new DBGuild(g, 0, 0, 0));
+    }
+
+    public Collection<DBGuild> getGuilds() {
+        return guilds.values();
     }
 }

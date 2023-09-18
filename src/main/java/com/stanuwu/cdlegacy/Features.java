@@ -32,6 +32,7 @@ import com.stanuwu.cdlegacy.game.impl.start.StartCommand;
 import com.stanuwu.cdlegacy.game.impl.stats.StatsCommand;
 import com.stanuwu.cdlegacy.game.impl.title.TitleCommand;
 import com.stanuwu.cdlegacy.game.impl.title.TitleDropdown;
+import com.stanuwu.cdlegacy.game.impl.top.TopCommand;
 import com.stanuwu.cdlegacy.game.impl.train.TrainCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -118,6 +119,9 @@ public class Features {
                 new ShopCommand(),
                 new ShopButton(),
                 new ShopDropdown(),
+
+                // Top
+                new TopCommand(),
         };
     }
 
