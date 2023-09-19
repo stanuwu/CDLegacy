@@ -35,7 +35,7 @@ public class Game {
         Monster type = Monster.randomForLevel(user.getLevel());
         GameMonster monster = new GameMonster(type, monsterLevel, user, guild);
         int playerRoll = random.nextInt(0, 11);
-        GamePlayer player = new GamePlayer(playerRoll, user, guild);
+        GamePlayer player = new GamePlayer(playerRoll, user, guild, monster);
         boolean headstart = playerRoll > 4;
         Simulation simulation = new Simulation(headstart ? player : monster, headstart ? monster : player);
         boolean winner = simulation.fight();
