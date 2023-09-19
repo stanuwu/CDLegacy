@@ -144,10 +144,11 @@ public class Features {
 
     public void registerPost(JDA jda, boolean modeDev, long devGuild) {
         if (!modeDev) {
+            long id = jda.getSelfUser().getApplicationIdLong();
             for (Guild g : jda.getGuilds()) {
                 g.retrieveCommands().queue(s -> {
                     for (Command d : s) {
-                        g.deleteCommandById(d.getId()).queue();
+                        if (d.getApplicationIdLong() == id) d.delete().queue();
                     }
                 });
             }
