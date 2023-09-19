@@ -17,7 +17,7 @@ public enum Monster {
     WOODEN_MIMIC("Wooden Mimic", "A wooden chest corrupted by evil, engaging everyone who tries to open it", 50, 0, 95, 0, 9),
     GOBLIN_BANDIT("Goblin Bandit", "Hostile goblin wielding a melee weapon.", 50, 0, 100, 5, 15),
     STABBING_GOBLIN("Stabbing Goblin ", "A goblin with murderous intent, enjoying the sounds of their shiv.", 45, 0, 100, 6, 15),
-    ROAMING_THUNDERCLOUD("Roaming Thundercloud", "The creation of a wizard's spell, forgotten by its caster.", 30, 0, 150, 5, 50),
+    ROAMING_THUNDERCLOUD("Roaming Thundercloud", "The creation of a wizard's spell, forgotten by its caster.", 30, 0, 100, 5, 50),
     STEEL_MIMIC("Steel Mimic", "A steel chest corrupted by evil, engaging everyone who tries to open it", 70, 0, 90, 0, 18),
     BANDIT("Bandit", "A human whose path led them to a life of crime.", 65, 0, 100, 10, 25),
     BANDIT_LEADER("Bandit Leader", "The leader of a small group of bandits. Some are indepent, some are lieutenants of a larger bandit group.", 75, 0, 100, 11, 30),
@@ -45,14 +45,14 @@ public enum Monster {
     BANISHED_REAPER("Banished Reaper", "A taker of souls who enjoyed their profession for the wrong reasons.", 100, 0, 100, 20, 50),
     WATCHER("Watcher", "An enourmous beast covered with hundreds or even thousand of eyes. One the most dangerous common beasts of the realm.", 250, 0, 100, 40, 60),
     GNAWING_RAT("Gnawing Rat", "A rat who attacks and eats everything it sees, even other rats.", 20, 0, 90, 0, 5),
-    GLOWING_BUG("Glowing Bug", "A flesh-eating insect, using its yellowish skin to reflect light.", 35, 0, 150, 0, 10),
-    HUNGRY_GHOUL("Hungry Ghoul", "An dwarfish creature with long limbs rotting, poisounous teeth.", 25, 0, 110, 0, 8),
+    GLOWING_BUG("Glowing Bug", "A flesh-eating insect, using its yellowish skin to reflect light.", 35, 0, 100, 0, 10),
+    HUNGRY_GHOUL("Hungry Ghoul", "An dwarfish creature with long limbs rotting, poisounous teeth.", 25, 0, 100, 0, 8),
     CAVE_DWELLER("Cave Dweller", "An unfortunate soul which body and mind changed through their unwanted stay in a hideous cave.", 65, 0, 80, 10, 18),
     WHITE_EYED_SCORPION("White-Eyed Scorpion", "A scorpion who is rougly the size of a pig. Lives in caves because the sunlight hurts its eyes.", 40, 0, 85, 5, 18),
     WOLVERINE_SPIDER("Wolverine Spider", "An agressive arachne, crawling in the deepest of caves. They got their name from its deadly bite strength.", 50, 0, 100, 15, 50),
     ATAMAKIUM("Atamakium", "A sentinent liquid which is able to control the cave they flowing through, using the rocky walls to attack and defend itself.", 150, 0, 50, 35, 50),
     HIJEDJEN("Hijedjen", "A large, wolf like creature covered in stone skin. It's roar constantly echoes trough a cave once it let it outh their.'", 220, 0, 70, 50, 100),
-    HUNGRY_DROWNED("Hungry Drowned", "An undead who met their demise at the bottom of the sea.", 30, 0, 110, 0, 8),
+    HUNGRY_DROWNED("Hungry Drowned", "An undead who met their demise at the bottom of the sea.", 30, 0, 100, 0, 8),
     EAR_RIPPING_GULL("Ear-Ripping Gull", "A kind of seagull know to attack humandoids. Ornothologist believe this behavior is a result of the main prey of the gulls: An ear-like shaped mollusc.", 40, 0, 85, 0, 6),
     WASHED_UP_PIRATE("Washed Up Pirate", "A pirate who was nearly killed in a storm, roaming the shores.", 60, 0, 100, 10, 28),
     STRANDPLUENDERER("Strandplünderer", "Scavengers of a strange speaking tribe, searching the beaches for cargo of ship wrecks. They don't like to share.", 75, 0, 100, 15, 33),
@@ -64,8 +64,8 @@ public enum Monster {
     SKELETON_ARCHER("Skeleton Archer", "Robbed of their eyes through their decay, they began to fire at everything the sense.", 45, 0, 100, 5, 30),
     FRESH_UNDEAD("Fresh Undead", "A zombie who turned only moments ago. Some of them even can use some of their old moves in the afterlife.", 50, 0, 100, 10, 30),
     ANCIENT_SPIRIT("Ancient Spirit", "The ghost of a human who has forgotten their own death. Some say the ony kill in order to remember how they died.", 40, 0, 50, 16, 45),
-    NECROMANCER_OF_THE_ORDER("Necromancer of the Order", "A member of an evil organisation who specializes in necromancy.", 80, 0, 120, 30, 40),
-    MIRROR_PORTRAIT("Mirror Portrait", "An image of yourself from a time line where you died a gruesome death.", 100, 0, 1000, 50, 0),
+    NECROMANCER_OF_THE_ORDER("Necromancer of the Order", "A member of an evil organisation who specializes in necromancy.", 80, 0, 100, 30, 40),
+    MIRROR_PORTRAIT("Mirror Portrait", "An image of yourself from a time line where you died a gruesome death.", 100, 0, 10, 50, 10),
     SANDSPEWER("Sandspewer", "An aggressive reptile who lunges sand to attack its prey.", 40, 0, 100, 0, 8),
     KAKAKA("Kakaka", "A bird like creature made out of cacti. Their claws sting like a regular cactus.", 35, 0, 100, 0, 9),
     MALNOURISHED_MUMMY("Malnourished Mummy", "A mummy who regained their cut out organs, having regained a sense of hunger.", 35, 0, 100, 0, 12),
@@ -93,14 +93,14 @@ public enum Monster {
     MOUNTAIN_TROLL("Mountain Troll", "A stupid and grey skined monster. Dislikes all kinds of intelligent life.", 90, 0, 80, 20, 20),
     STONE_GOLEM("Stone Golem", "A giant humanoid covered in a armor of stones and minerals. Often thought to be a defense mechanism of the mountains they roam.", 100, 0, 70, 10, 20),
     OPTIMISTIC_PYROMANIAC("Optimistic Pyromaniac", "An aspirirng fire wizard wannabe, for all the wrong reasons", 50, 0, 100, 0, 10),
-    FIRE_WIZARD_OF_THE_ORDER("Fire Wizard of the Order", "A member of an evil organisation who specializes in fire spells.", 55, 0, 120, 10, 30),
+    FIRE_WIZARD_OF_THE_ORDER("Fire Wizard of the Order", "A member of an evil organisation who specializes in fire spells.", 55, 0, 100, 10, 30),
     FIRE_GOLEM("Fire Golem", "They look Like their cousin the stone golem, but are covered in fire and found in volcanoes rather than normal mountains.", 110, 0, 80, 15, 40),
     DEVILS_MINION("Devil's Minion", "Asked and granted to bring fear into the lives of the living by the devil himself.", 90, 0, 80, 25, 45),
     MAGMA_GOLEM("Magma Golem", "Only found in mountain ranges including volcanoes, this golem seems to be a rare fusion of a stone and a fire golem.", 130, 0, 70, 30, 50),
-    BUZZING_DRAGONFLY("Buzzing Dragonfly", "Bigger and more aggressive than normal dragonflys. Easy to kill, but their bites can cause grave wounds.", 20, 0, 150, 0, 30),
-    TOXIC_DROWNED("Toxic Drowned", "An undead who met their demise at the bottom of the swamp. Their body is filled with toxic sludge.", 30, 0, 110, 0, 8),
+    BUZZING_DRAGONFLY("Buzzing Dragonfly", "Bigger and more aggressive than normal dragonflys. Easy to kill, but their bites can cause grave wounds.", 20, 0, 100, 0, 30),
+    TOXIC_DROWNED("Toxic Drowned", "An undead who met their demise at the bottom of the swamp. Their body is filled with toxic sludge.", 30, 0, 100, 0, 8),
     ALLIGATOR_HUNTER("Alligator Hunter", "A poacher who specialises killing alligators. They are not nice to them.", 70, 0, 100, 5, 22),
-    TOXIC_SMOKE("Toxic Smoke", "A cloud o poisonous smoke which is controlled by an otherwise weak spirit.", 60, 0, 150, 10, 10),
+    TOXIC_SMOKE("Toxic Smoke", "A cloud o poisonous smoke which is controlled by an otherwise weak spirit.", 60, 0, 100, 10, 10),
     HUNTED_ALLIGATOR("Hunted Alligator", "An alligator agitated through a recent attempt on its life.", 80, 0, 90, 20, 40),
     VISKEN("Visken", "The most hated kind of fish off all fishermen, known for chewing on rods and fingers.", 30, 0, 100, 0, 8),
     PIRATE_BOAT("Pirate Boat", "A small boat full of average pirates armed with sabers.", 80, 0, 100, 10, 25),
@@ -112,7 +112,7 @@ public enum Monster {
     CORRUPT_GUARD("Corrupt Guard", "A corrupt member of the city guard.", 70, 0, 90, 10, 22),
     CORRUPT_GUARD_OFFICER("Corrupt Guard Officer", "A corrupt officer of the city guard.", 75, 0, 90, 11, 25),
     NOBLE_GUARD("Noble Guard", "A guard who doesn't question the orders they are given from they worst of the rich.", 100, 0, 85, 20, 35),
-    GREAT_WIZARD_OF_THE_ORDER("Grand Wizard of the Order", "An officer of an evil organisation who specializes in a variety of spells.", 70, 0, 110, 11, 25),
+    GREAT_WIZARD_OF_THE_ORDER("Grand Wizard of the Order", "An officer of an evil organisation who specializes in a variety of spells.", 110, 0, 70, 15, 25),
     ;
     @Getter
     private final String name;
@@ -141,7 +141,7 @@ public enum Monster {
         this.name = name;
         this.description = description;
         this.health = health;
-        this.resistance = 100 - resistance;
+        this.resistance = Math.max(1 - resistance, 0);
         this.minLevel = minLevel;
         this.damage = damage;
     }

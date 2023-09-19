@@ -10,7 +10,7 @@ import com.stanuwu.cdlegacy.game.event.events.EventPlayerHealth;
 
 public class GamePlayer extends GameEntity {
     public GamePlayer(int roll, DBUser user, DBGuild guild, GameMonster monster) {
-        int level = Math.min(0, user.getLevel() - roll + 5);
+        int level = Math.max(0, user.getLevel() - roll + 5);
         Ref<Integer> health = Ref.of(GameScale.health(100, level));
         Ref<Integer> damage = Ref.of(GameScale.weaponDamage(user.getWeapon().getType().getDamage(), level));
         Ref<Float> block = Ref.of(Math.min(GameScale.armorBlock(user.getArmor().getType().getReduction(), level), 50) / 100f);

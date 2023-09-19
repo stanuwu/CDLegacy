@@ -44,6 +44,7 @@ import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.Command;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -142,6 +143,15 @@ public class Features {
     }
 
     public void registerPost(JDA jda, boolean modeDev, long devGuild) {
+        if (!modeDev) {
+            for (Guild g : jda.getGuilds()) {
+                g.retrieveCommands().queue(s -> {
+                    for (Command d : s) {
+                        g.deleteCommandById(d.getId()).queue();
+                    }
+                });
+            }
+        }
         for (ListenerAdapter l : commands) {
             if (l instanceof BaseCommand c) {
                 if (modeDev) {
