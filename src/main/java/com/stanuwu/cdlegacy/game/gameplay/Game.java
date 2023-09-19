@@ -11,10 +11,7 @@ import com.stanuwu.cdlegacy.game.data.DBGuild;
 import com.stanuwu.cdlegacy.game.data.DBUser;
 import com.stanuwu.cdlegacy.game.event.Events;
 import com.stanuwu.cdlegacy.game.event.Ref;
-import com.stanuwu.cdlegacy.game.event.events.EventGearDrop;
-import com.stanuwu.cdlegacy.game.event.events.EventObtainCoins;
-import com.stanuwu.cdlegacy.game.event.events.EventObtainExp;
-import com.stanuwu.cdlegacy.game.event.events.EventObtainExpGear;
+import com.stanuwu.cdlegacy.game.event.events.*;
 import com.stanuwu.cdlegacy.message.Placeholder;
 import com.stanuwu.cdlegacy.message.ReplyContext;
 import com.stanuwu.cdlegacy.message.embeds.Embeds;
@@ -72,6 +69,7 @@ public class Game {
             rewards.append("+").append(armor.get()).append(" :shield: Armor EXP").append("\n");
             rewards.append("+").append(extra.get()).append(" :crystal_ball: Extra EXP");
             embed.field("Rewards", new String(rewards));
+            Events.SLAY_MONSTER.invoke(new EventSlayMonster(user, guild));
         } else embed.colorError();
         return new FightResult(winner, embed.build());
     }

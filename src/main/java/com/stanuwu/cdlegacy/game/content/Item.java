@@ -9,6 +9,8 @@ public enum Item {
     GOLDEN_LEAF("Golden Leaf"),
     LEATHER("Leather"),
     WOLF_TOOTH("Wolf Tooth"),
+    FISH_SCALE("Fish Scale"),
+    HYDRA_SCALE("Hydra Scale"),
     ASHES("Ashes"),
     ;
     @Getter

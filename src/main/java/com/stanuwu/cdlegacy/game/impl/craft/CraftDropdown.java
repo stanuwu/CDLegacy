@@ -15,7 +15,7 @@ public class CraftDropdown extends StringDropdown {
         DBUser user = ctx.getUser();
         CraftingRecipe recipe = DBEnum.fromKey(ctx.getValue(), CraftingRecipe.class);
         long id = ctx.getCache().getLong("craft-id");
-        ParamCache.start("craft-dropdown", id).putLong("shop-id", id).end();
+        ParamCache.start("craft-dropdown", id).putLong("craft-id", id).end();
         ParamCache.start("craft-button", id).putString("recipe", ctx.getValue()).end();
         ctx.reply(
                         CraftCommand.getEmbed(recipe)

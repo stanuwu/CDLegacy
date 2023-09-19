@@ -143,10 +143,13 @@ public enum Extra implements IGear {
     FRACTURED_GEM("Fractured Gem", "A dark gem with but a single crack exposing it's beautiful, gleaming core.\nVital Rays: Significantly increases your health.", Rarity.LEGENDARY, new EventHook(
             EventHook.health(1.25f)
     )),
-    NEBULA_KEY("Nebula Key", "Its owner is said to be the master of the universe. Even after his demise, his energy still resonantes within.\nCosmic Field: Significantly increases your block.", Rarity.LEGENDARY, new EventHook(
+    NEBULA_KEY("Nebula Key", "Its owner is said to be the master of the universe. Even after his demise, his energy still resonates within.\nCosmic Field: Significantly increases your block.", Rarity.LEGENDARY, new EventHook(
             EventHook.block(1.25f)
     )),
 
+    DARK_STEEL_ANVIL("Dark Steel Anvil", "A dwarven anvil, crafted from the fines dark steel.\nForge: Increases gear exp gained.", Rarity.UNSTABLE, new EventHook(
+            Events.OBTAIN_EXP_GEAR.make(e -> e.exp.op(ex -> (int) (ex * 1.25f)))
+    )),
     SPIRIT_REPLICA("Spirit Replica", "A ghostly clone of your weapon, attacking in tandem with you.\nFirst Hand: Greatly increases your damage.", Rarity.UNSTABLE, new EventHook(
             EventHook.damage(1.35f)
     )),

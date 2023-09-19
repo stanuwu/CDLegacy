@@ -84,8 +84,8 @@ public enum Armor implements IGear {
     )),
 
     FISH_SCALE_MAIL("Fish Scale Mail", "Really shiny, not sturdy.", Rarity.CRAFTED, 1),
-    PAPER_ARMOR("Paper Armor", "A surprisingly sturdy armor made from paper.", Rarity.CRAFTED, 6),
-    STEEL_ARMOR("Steel Armor", "Quite hefty - good defense, but you look sort of stupid with it.", Rarity.CRAFTED, 11),
+    GOLD_PLATED_ARMOR("Gold Plated Armor", "Quite hefty - good defense, but you look sort of stupid with it.", Rarity.CRAFTED, 11),
+    HYDRA_SCALE_MAIL("Hydra Scale Mail", "Not as fishy as that other set of armor.", Rarity.CRAFTED, 25),
 
     WORLD_ARMOR("World Armor", "This Armor is forged from the pieces of space-time.", Rarity.UNIQUE, 60),
     ;

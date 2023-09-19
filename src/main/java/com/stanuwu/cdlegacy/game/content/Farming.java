@@ -6,6 +6,7 @@ public enum Farming {
     MINING("Mining", ":pick:", Item.STONE, Item.DIAMOND),
     FORAGING("Foraging", ":axe:", Item.WOOD, Item.GOLDEN_LEAF),
     HUNTING("Hunting", ":bow_and_arrow:", Item.LEATHER, Item.WOLF_TOOTH),
+    FISHING("Fishing", ":fishing_pole_and_fish:", Item.FISH_SCALE, Item.HYDRA_SCALE),
     ;
     @Getter
     private final String name;

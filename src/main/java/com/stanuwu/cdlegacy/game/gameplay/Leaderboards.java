@@ -40,11 +40,11 @@ public class Leaderboards {
             return embed.description("Leaderboards are updating...\nPlease wait a few seconds.").build();
         embed.thumbnail(levelPic);
         StringBuilder lead = new StringBuilder();
-        lead.append("### ").append("1) ").append(level[0].getName()).append(": ").append(level[0].formatLevel());
+        lead.append("### ").append("1) ").append(level[0].titleName()).append(": ").append(level[0].formatLevel());
         if (level[1] != null)
-            lead.append("\n").append("2) ").append(level[1].getName()).append(": ").append(level[1].formatLevel());
+            lead.append("\n").append("2) ").append(level[1].titleName()).append(": ").append(level[1].formatLevel());
         if (level[2] != null)
-            lead.append("\n").append("3) ").append(level[2].getName()).append(": ").append(level[2].formatLevel());
+            lead.append("\n").append("3) ").append(level[2].titleName()).append(": ").append(level[2].formatLevel());
         return embed.description(new String(lead)).build();
     }
 
@@ -54,11 +54,11 @@ public class Leaderboards {
             return embed.description("Leaderboards are updating...\nPlease wait a few seconds.").build();
         embed.thumbnail(coinsPic);
         StringBuilder lead = new StringBuilder();
-        lead.append("### ").append("1) ").append(coins[0].getName()).append(": ").append(coins[0].formatCoins()).append(" :coin:");
+        lead.append("### ").append("1) ").append(coins[0].titleName()).append(": ").append(coins[0].formatCoins()).append(" :coin:");
         if (coins[1] != null)
-            lead.append("\n").append("2) ").append(coins[1].getName()).append(": ").append(coins[1].formatCoins()).append(" :coin:");
+            lead.append("\n").append("2) ").append(coins[1].titleName()).append(": ").append(coins[1].formatCoins()).append(" :coin:");
         if (coins[2] != null)
-            lead.append("\n").append("3) ").append(coins[2].getName()).append(": ").append(coins[2].formatCoins()).append(" :coin:");
+            lead.append("\n").append("3) ").append(coins[2].titleName()).append(": ").append(coins[2].formatCoins()).append(" :coin:");
         return embed.description(new String(lead)).build();
     }
 
@@ -68,16 +68,16 @@ public class Leaderboards {
             return embed.description("Leaderboards are updating...\nPlease wait a few seconds.").build();
         embed.thumbnail(gearPic);
         StringBuilder lead = new StringBuilder();
-        lead.append("### ").append("1) ").append(gear[0].getName())
+        lead.append("### ").append("1) ").append(gear[0].titleName())
                 .append("\n").append(":dagger: ").append(gear[0].getWeapon().getType().getName())
                 .append("\n").append(":shield: ").append(gear[0].getArmor().getType().getName())
                 .append("\n").append(":crystal_ball: ").append(gear[0].getExtra().getType().getName());
         if (gear[1] != null)
-            lead.append("\n\n").append("2) ").append(gear[1].getName())
+            lead.append("\n\n").append("2) ").append(gear[1].titleName())
                     .append("\n").append(":dagger: ").append(gear[1].getWeapon().getType().getName())
                     .append("\n").append(":shield: ").append(gear[1].getArmor().getType().getName())
                     .append("\n").append(":crystal_ball: ").append(gear[1].getExtra().getType().getName());
-        if (gear[2] != null) lead.append("\n\n").append("3) ").append(gear[2].getName())
+        if (gear[2] != null) lead.append("\n\n").append("3) ").append(gear[2].titleName())
                 .append("\n").append(":dagger: ").append(gear[2].getWeapon().getType().getName())
                 .append("\n").append(":shield: ").append(gear[2].getArmor().getType().getName())
                 .append("\n").append(":crystal_ball: ").append(gear[2].getExtra().getType().getName());
@@ -157,7 +157,7 @@ public class Leaderboards {
         this.server = server;
         if (server[0] == null) {
             serverPic = Config.AVATAR;
-            serverNames[0] = "";
+            serverNames[0] = "" ;
         } else {
             Guild guild = this.jda.getGuildById(server[0].getGuildId());
             if (guild != null) {
@@ -166,7 +166,7 @@ public class Leaderboards {
             }
         }
         if (server[1] == null) {
-            serverNames[1] = "";
+            serverNames[1] = "" ;
         } else {
             Guild guild = this.jda.getGuildById(server[1].getGuildId());
             if (guild != null) {
@@ -174,7 +174,7 @@ public class Leaderboards {
             }
         }
         if (server[2] == null) {
-            serverNames[2] = "";
+            serverNames[2] = "" ;
         } else {
             Guild guild = this.jda.getGuildById(server[2].getGuildId());
             if (guild != null) {

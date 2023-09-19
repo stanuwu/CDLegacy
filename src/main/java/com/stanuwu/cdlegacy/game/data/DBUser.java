@@ -97,7 +97,7 @@ public class DBUser {
         this.userId = userId;
         this.name = name;
         this.title = Title.PLAYER;
-        this.description = "";
+        this.description = "" ;
         this.cdClass = CDClass.ADVENTURER;
         this.exp = 0;
         this.coins = 50;
@@ -129,6 +129,10 @@ public class DBUser {
 
     public boolean is(long id) {
         return this.getUserId() == id;
+    }
+
+    public String titleName() {
+        return "[%s] %s".formatted(this.getTitle().getTitle(), this.getName());
     }
 
     public String formatName() {

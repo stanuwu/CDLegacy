@@ -92,7 +92,7 @@ public enum Weapon implements IGear {
     )),
 
     WOODEN_SWORD("Wooden Sword", "Only made for combat training.", Rarity.CRAFTED, 5, DamageType.SWORD),
-    RESTORED_SWORD("Restored Sword", "An old sword, restored to its former glory.", Rarity.CRAFTED, 13, DamageType.SWORD),
+    WOLF_BLADE("Wolf Blade", "A small dagger, formed from a wolf tooth.", Rarity.CRAFTED, 13, DamageType.DAGGER),
     DIAMOND_TIP_SWORD("Diamond Tip Sword", "Made out of an incredible amount of stone and one diamond.", Rarity.CRAFTED, 50, DamageType.SWORD),
 
     LIFE_EXTRACTOR("Life Extractor",
@@ -131,6 +131,6 @@ public enum Weapon implements IGear {
     }
 
     public String formatType() {
-        return this.getDamageType().getName() + " (" + this.getDamageType().getArchtype().getName() + ")";
+        return this.getDamageType().getName() + " (" + this.getDamageType().getArchtype().getName() + ")" ;
     }
 }

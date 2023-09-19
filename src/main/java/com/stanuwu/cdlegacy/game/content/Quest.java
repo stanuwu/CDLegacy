@@ -14,6 +14,12 @@ public enum Quest {
     EXPLORE("Explorer", "Gain %diff% more EXP.", 100, 5, 50, 25, new EventHook(
             Events.OBTAIN_EXP.make(e -> e.user.getQuest().progress(e.exp.get()))
     )),
+    BUSINESSMAN("Businessman", "Gain %diff% more coins.", 200, 5, 50, 25, new EventHook(
+            Events.OBTAIN_COINS.make(e -> e.user.getQuest().progress(e.coins.get()))
+    )),
+    TRAVELLER("Traveller", "Open %diff% more doors.", 2, 3, 75, 35, new EventHook(
+            Events.OPEN_DOOR.make(e -> e.user.getQuest().progress())
+    )),
     TRAIN("Trainer", "Train %diff% more time(s).", 4, 3, 50, 25, new EventHook(
             Events.TRAIN.make(e -> e.user.getQuest().progress())
     )),
