@@ -5,6 +5,7 @@ import com.stanuwu.cdlegacy.game.event.Event;
 import com.stanuwu.cdlegacy.game.event.EventHook;
 import com.stanuwu.cdlegacy.game.event.Events;
 import com.stanuwu.cdlegacy.game.gameplay.GameScale;
+import com.stanuwu.cdlegacy.game.gameplay.Vote;
 import com.stanuwu.cdlegacy.util.StringUtil;
 import com.stanuwu.cdlegacy.util.TimeUtil;
 import lombok.Getter;
@@ -189,10 +190,16 @@ public class DBUser {
         this.deleted = true;
     }
 
+    public boolean canVote(LocalDateTime time) {
+        return TimeUtil.minuteDifference(this.getLastVote(), time) > Cooldown.VOTE.getCd();
+    }
+
     public synchronized boolean canDoVote(LocalDateTime time) {
         if (TimeUtil.minuteDifference(this.getLastVote(), time) > Cooldown.VOTE.getCd()) {
-            this.lastVote = time;
-            return true;
+            if (Vote.hasVotedSync(this)) {
+                this.lastVote = time;
+                return true;
+            }
         }
         return false;
     }

@@ -3,6 +3,7 @@ package com.stanuwu.cdlegacy;
 import com.stanuwu.cdlegacy.db.DB;
 import com.stanuwu.cdlegacy.game.data.DBData;
 import com.stanuwu.cdlegacy.game.gameplay.Leaderboards;
+import com.stanuwu.cdlegacy.game.gameplay.Vote;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import org.slf4j.Logger;
@@ -45,6 +46,8 @@ public class CDLegacy {
             return;
         }
 
+        Vote.init();
+
         logger.info("STARTING BOT");
         JDABuilder b = JDABuilder.createDefault(TOKEN);
         Config.configMemory(b);
@@ -63,6 +66,10 @@ public class CDLegacy {
         }
 
         logger.info("BOT STARTED");
+
+        logger.info("STARTING DBL THREAD");
+        Executors.newScheduledThreadPool(1).scheduleAtFixedRate(() -> Vote.postStats(JDA), 30, 60, TimeUnit.MINUTES);
+        logger.info("STARTED DBL THREAD");
 
         logger.info("STARTING LEADERBOARDS THREAD");
         new Leaderboards(JDA).init();

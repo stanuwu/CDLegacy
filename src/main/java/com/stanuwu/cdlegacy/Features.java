@@ -12,6 +12,7 @@ import com.stanuwu.cdlegacy.game.impl.coinflip.CoinflipCommand;
 import com.stanuwu.cdlegacy.game.impl.craft.CraftButton;
 import com.stanuwu.cdlegacy.game.impl.craft.CraftCommand;
 import com.stanuwu.cdlegacy.game.impl.craft.CraftDropdown;
+import com.stanuwu.cdlegacy.game.impl.daily.DailyCommand;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteButton;
 import com.stanuwu.cdlegacy.game.impl.delete.DeleteCommand;
 import com.stanuwu.cdlegacy.game.impl.description.DescriptionCommand;
@@ -155,6 +156,9 @@ public class Features {
 
                 // Extra
                 new ExtraCommand(),
+
+                // Daily
+                new DailyCommand(),
         };
     }
 
