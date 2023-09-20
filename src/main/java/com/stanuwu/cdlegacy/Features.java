@@ -3,6 +3,7 @@ package com.stanuwu.cdlegacy;
 import com.stanuwu.cdlegacy.db.DB;
 import com.stanuwu.cdlegacy.features.IFeature;
 import com.stanuwu.cdlegacy.features.command.BaseCommand;
+import com.stanuwu.cdlegacy.game.impl.armor.ArmorCommand;
 import com.stanuwu.cdlegacy.game.impl.cdclass.ClassCommand;
 import com.stanuwu.cdlegacy.game.impl.cdclass.ClassDropdown;
 import com.stanuwu.cdlegacy.game.impl.character.CharacterCommand;
@@ -16,12 +17,14 @@ import com.stanuwu.cdlegacy.game.impl.delete.DeleteCommand;
 import com.stanuwu.cdlegacy.game.impl.description.DescriptionCommand;
 import com.stanuwu.cdlegacy.game.impl.door.DoorCommand;
 import com.stanuwu.cdlegacy.game.impl.drop.DropButton;
+import com.stanuwu.cdlegacy.game.impl.extra.ExtraCommand;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmDropdown;
 import com.stanuwu.cdlegacy.game.impl.gear.GearCommand;
 import com.stanuwu.cdlegacy.game.impl.help.HelpCommand;
 import com.stanuwu.cdlegacy.game.impl.inventory.InventoryCommand;
+import com.stanuwu.cdlegacy.game.impl.monster.MonsterCommand;
 import com.stanuwu.cdlegacy.game.impl.quest.QuestButton;
 import com.stanuwu.cdlegacy.game.impl.quest.QuestCommand;
 import com.stanuwu.cdlegacy.game.impl.rename.RenameCommand;
@@ -37,6 +40,7 @@ import com.stanuwu.cdlegacy.game.impl.title.TitleCommand;
 import com.stanuwu.cdlegacy.game.impl.title.TitleDropdown;
 import com.stanuwu.cdlegacy.game.impl.top.TopCommand;
 import com.stanuwu.cdlegacy.game.impl.train.TrainCommand;
+import com.stanuwu.cdlegacy.game.impl.weapon.WeaponCommand;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Guild;
@@ -139,6 +143,18 @@ public class Features {
 
                 // Gear
                 new GearCommand(),
+
+                // Monster
+                new MonsterCommand(),
+
+                // Weapon
+                new WeaponCommand(),
+
+                // Armor
+                new ArmorCommand(),
+
+                // Extra
+                new ExtraCommand(),
         };
     }
 

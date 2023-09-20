@@ -1,0 +1,5 @@
+### [Lvl. %monster_level%] %monster%
+**Damage: ** %monster_damage%
+**Block: ** %monster_block%%
+**Health: ** %monster_health%
+%monster_desc%
