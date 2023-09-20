@@ -97,7 +97,7 @@ public class DBUser {
         this.userId = userId;
         this.name = name;
         this.title = Title.PLAYER;
-        this.description = "" ;
+        this.description = "";
         this.cdClass = CDClass.ADVENTURER;
         this.exp = 0;
         this.coins = 50;
@@ -198,7 +198,7 @@ public class DBUser {
     }
 
     public LocalDateTime canVoteAt() {
-        return this.getLastVote().plusMinutes(Cooldown.VOTE.getCd());
+        return this.getLastVote().plusMinutes(Cooldown.VOTE.getCd() + 1);
     }
 
     public synchronized boolean canDoDoor(LocalDateTime time) {
@@ -210,7 +210,7 @@ public class DBUser {
     }
 
     public LocalDateTime canDoorAt() {
-        return this.getLastDoor().plusMinutes(Cooldown.DOOR.getCd());
+        return this.getLastDoor().plusMinutes(Cooldown.DOOR.getCd() + 1);
     }
 
     public synchronized boolean canDoTrain(LocalDateTime time) {
@@ -222,7 +222,7 @@ public class DBUser {
     }
 
     public LocalDateTime canTrainAt() {
-        return this.getLastTrain().plusMinutes(Cooldown.TRAIN.getCd());
+        return this.getLastTrain().plusMinutes(Cooldown.TRAIN.getCd() + 1);
     }
 
     public synchronized boolean canDoFarm(LocalDateTime time) {
@@ -234,7 +234,7 @@ public class DBUser {
     }
 
     public LocalDateTime canFarmAt() {
-        return this.getLastFarm().plusMinutes(Cooldown.FARM.getCd());
+        return this.getLastFarm().plusMinutes(Cooldown.FARM.getCd() + 1);
     }
 
     public <T extends Event> void invokeEvent(Events.EventCaller<T> caller, T event) {
