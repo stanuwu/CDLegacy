@@ -1,0 +1,14 @@
+### :dagger: [%weapon_rarity%] %weapon%
+**%weapon_lvl%**
+**Damage: ** %weapon_damage%
+**Type: ** %weapon_type%
+%weapon_desc%
+
+### :shield: [%armor_rarity%] %armor%
+**%armor_lvl%**
+**Block: ** %armor_block%%
+%armor_desc%
+
+### :crystal_ball: [%extra_rarity%] %extra%
+**%extra_lvl%**
+%extra_desc%

@@ -19,6 +19,7 @@ import com.stanuwu.cdlegacy.game.impl.drop.DropButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmButton;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmCommand;
 import com.stanuwu.cdlegacy.game.impl.farm.FarmDropdown;
+import com.stanuwu.cdlegacy.game.impl.gear.GearCommand;
 import com.stanuwu.cdlegacy.game.impl.help.HelpCommand;
 import com.stanuwu.cdlegacy.game.impl.inventory.InventoryCommand;
 import com.stanuwu.cdlegacy.game.impl.quest.QuestButton;
@@ -135,6 +136,9 @@ public class Features {
 
                 // Door
                 new DoorCommand(),
+
+                // Gear
+                new GearCommand(),
         };
     }
 
