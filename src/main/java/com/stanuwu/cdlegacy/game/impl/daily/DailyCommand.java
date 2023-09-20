@@ -12,7 +12,7 @@ import com.stanuwu.cdlegacy.util.Timestamps;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
 import net.dv8tion.jda.api.utils.TimeFormat;
 
-@CommandData(name = "Vote", description = "Vote for the bot and earn rewards.", isGame = true)
+@CommandData(name = "daily", description = "Vote for the bot and earn rewards.", isGame = true)
 public class DailyCommand extends BaseCommand {
     @Override
     protected void doCommand(CommandContext ctx) {
