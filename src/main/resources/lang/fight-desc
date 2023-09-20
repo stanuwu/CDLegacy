@@ -3,5 +3,5 @@
 **Block: ** %monster_block%%
 %monster_desc%
 
-:game_die: You roll a %roll%!
+:game_die: You roll %roll%!%success%
 %status%

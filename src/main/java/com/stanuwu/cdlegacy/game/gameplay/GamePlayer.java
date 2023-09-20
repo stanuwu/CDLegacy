@@ -20,5 +20,10 @@ public class GamePlayer extends GameEntity {
         this.health = health.get();
         this.damage = damage.get();
         this.block = block.get();
+        if (roll == 0) {
+            this.damage /= 2;
+        } else if (roll == 10) {
+            this.damage *= 2;
+        }
     }
 }
