@@ -24,7 +24,7 @@ public class DoorCommand extends BaseCommand {
     protected void doCommand(CommandContext ctx) {
         DBUser user = ctx.getUser();
         if (!user.canDoDoor(ctx.time())) {
-            ctx.reply(Embeds.error("You open another door " + Timestamps.toTimestamp(TimeFormat.RELATIVE, user.canDoorAt()) + ".").build()).send();
+            ctx.reply(Embeds.error("You can open another door " + Timestamps.toTimestamp(TimeFormat.RELATIVE, user.canDoorAt()) + ".").build()).send();
             return;
         }
         DBGuild guild = ctx.getGuild();
