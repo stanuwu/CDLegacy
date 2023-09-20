@@ -13,7 +13,9 @@ public class DBInv {
     }
 
     DBInv() {
-
+        for (Item i : Item.values()) {
+            inv.put(i, 0L);
+        }
     }
 
     private final Map<Item, Long> inv = new ConcurrentHashMap<>();
