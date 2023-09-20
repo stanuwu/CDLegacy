@@ -116,4 +116,9 @@ public enum Armor implements IGear {
         this.reduction = reduction;
         this.event = EventHook.NONE;
     }
+
+    @Override
+    public String getStat() {
+        return "\n**Block:** " + "%.2f".formatted((float) this.reduction) + "%";
+    }
 }

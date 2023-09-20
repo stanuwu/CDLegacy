@@ -92,7 +92,8 @@ public class Game {
                                         new Placeholder("price", "" + gear.getRarity().getSellPrice()),
                                         new Placeholder("infuse", "" + gear.getRarity().getInfuseValue()),
                                         new Placeholder("ltype", type.getName().toLowerCase()),
-                                        new Placeholder("timestamp", Timestamps.toTimestamp(TimeFormat.RELATIVE, time.plusMinutes(15)))
+                                        new Placeholder("timestamp", Timestamps.toTimestamp(TimeFormat.RELATIVE, time.plusMinutes(15))),
+                                        new Placeholder("stat", gear.getStat())
                                 )
                                 .build()
                 )

@@ -28,7 +28,8 @@ public class CraftCommand extends BaseCommand {
                 new Placeholder("item", recipe.getGear().getName()),
                 new Placeholder("rarity", recipe.getGear().getRarity().getName()),
                 new Placeholder("description", recipe.getGear().getDescription()),
-                new Placeholder("cost", recipe.formatCost())
+                new Placeholder("cost", recipe.formatCost()),
+                new Placeholder("stat", recipe.getGear().getStat())
         ).build();
     }
 

@@ -1,5 +1,5 @@
 ### %type% %item%
-**Rarity:** %rarity%
+**Rarity:** %rarity%%stat%
 %description%
 
 **Sell:** :coin: %price% coins

@@ -131,6 +131,11 @@ public enum Weapon implements IGear {
     }
 
     public String formatType() {
-        return this.getDamageType().getName() + " (" + this.getDamageType().getArchtype().getName() + ")" ;
+        return this.getDamageType().getName() + " (" + this.getDamageType().getArchtype().getName() + ")";
+    }
+
+    @Override
+    public String getStat() {
+        return "\n**Damage:** " + this.damage + "\n" + "**Type:** " + formatType();
     }
 }

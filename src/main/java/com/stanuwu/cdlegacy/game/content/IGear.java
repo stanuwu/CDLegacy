@@ -12,4 +12,8 @@ public interface IGear {
     Rarity getRarity();
 
     EventHook getEvent();
+
+    default String getStat() {
+        return "";
+    }
 }
