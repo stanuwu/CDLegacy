@@ -28,7 +28,7 @@ import java.util.Random;
 public class Game {
     public FightResult simulateFight(DBUser user, DBGuild guild) {
         Random random = new Random();
-        int monsterLevel = user.getLevel() - 3 + random.nextInt(0, 7);
+        int monsterLevel = Math.max(user.getLevel() - 3 + random.nextInt(0, 7), 0);
         Monster type = Monster.randomForLevel(user.getLevel());
         GameMonster monster = new GameMonster(type, monsterLevel, user, guild);
         int playerRoll = random.nextInt(0, 11);
