@@ -6,7 +6,7 @@ from [CustomDungeons 2](https://github.com/stanuwu/CD2).
 Written with performance and maintainability in mind.
 
 > Building:
-> `mvn clean package`
+> `mvn clean compile package`
 
 > Database Setup:
 >
