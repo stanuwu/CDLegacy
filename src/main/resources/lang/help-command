@@ -17,6 +17,7 @@
 
 **Inventory**
 `/inventory` View your inventory.
+`/gear` View your gear.
 `/coinflip` Flip a coin and wager money.
 `/slots` Play slots for money.
 `/craft` Craft gear with your items.
