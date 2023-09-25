@@ -45,6 +45,7 @@ public class Vote {
     }
 
     public boolean hasVotedSync(DBUser user) {
+        if (Config.isStaff(user.getUserId())) return true;
         if (!voteFeatures) return false;
         try {
             return api.hasVoted("" + user.getUserId()).toCompletableFuture().get();
