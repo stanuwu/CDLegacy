@@ -48,7 +48,7 @@ public class Game {
                 new Placeholder("roll", "" + playerRoll),
                 new Placeholder("status", winner ? "You Win!" : "You Lose!"
                 ),
-                new Placeholder("success", playerRoll == 0 ? " Critical Fail!" : playerRoll == 10 ? "Critical Success!" : ""));
+                new Placeholder("success", playerRoll == 0 ? " Critical Fail!" : playerRoll == 10 ? " Critical Success!" : ""));
         embed.field("Your HP", playerHealth + "/" + player.getHealth());
         embed.field("Enemy HP", monsterHealth + "/" + monster.getHealth());
         if (winner) {
