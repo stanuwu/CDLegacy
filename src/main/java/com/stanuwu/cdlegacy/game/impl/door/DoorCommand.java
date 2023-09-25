@@ -33,9 +33,9 @@ public class DoorCommand extends BaseCommand {
         boolean lucky = random.nextInt(0, 11) == 0;
         if (lucky) {
             Events.FIND_CHEST.invoke(new EventFindChest(user, guild));
-            Ref<Integer> coins = Ref.of(random.nextInt(100, 250 + user.getLevel() * 10));
+            Ref<Integer> coins = Ref.of(random.nextInt(250, 500 + user.getLevel() * 10));
             Events.OBTAIN_COINS.invoke(new EventObtainCoins(user, guild, coins));
-            boolean veryLucky = random.nextInt(0, 21) == 0;
+            boolean veryLucky = random.nextInt(0, 11) == 0;
             ctx.reply(
                     Embeds.small("Treasure Chest")
                             .langDescription("door-chest",
@@ -54,7 +54,7 @@ public class DoorCommand extends BaseCommand {
             Game.FightResult res = Game.simulateFight(user, ctx.getGuild());
             ctx.reply(res.res()).send()
                     .then(m -> {
-                        if (random.nextInt(0, 101) == 0 && res.win())
+                        if (random.nextInt(0, 51) == 0 && res.win())
                             Game.dropRandomGear(user, guild, ctx.message(), ctx.time());
                     });
         }
