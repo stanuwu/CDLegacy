@@ -157,7 +157,7 @@ public class Leaderboards {
         this.server = server;
         if (server[0] == null) {
             serverPic = Config.AVATAR;
-            serverNames[0] = "" ;
+            serverNames[0] = "";
         } else {
             Guild guild = this.jda.getGuildById(server[0].getGuildId());
             if (guild != null) {
@@ -166,19 +166,19 @@ public class Leaderboards {
             }
         }
         if (server[1] == null) {
-            serverNames[1] = "" ;
+            serverNames[1] = "";
         } else {
             Guild guild = this.jda.getGuildById(server[1].getGuildId());
             if (guild != null) {
-                serverNames[0] = guild.getName();
+                serverNames[1] = guild.getName();
             }
         }
         if (server[2] == null) {
-            serverNames[2] = "" ;
+            serverNames[2] = "";
         } else {
             Guild guild = this.jda.getGuildById(server[2].getGuildId());
             if (guild != null) {
-                serverNames[0] = guild.getName();
+                serverNames[2] = guild.getName();
             }
         }
 
