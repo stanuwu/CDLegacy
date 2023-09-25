@@ -14,7 +14,7 @@ public class Config {
     public final String TOS = "https://docs.google.com/document/d/1TiKOlQeP6SdrC1n-QIFZHJhYAbhTUdqij0wUWoQ4fUg/edit?usp=sharing";
     public final String PP = "https://docs.google.com/document/d/1XB37EaNfEdynYvoUPhogNtkYRXF6lBUbGGxkX9uhDe4/edit?usp=sharing";
     public final String AVATAR = "https://cdn.discordapp.com/avatars/887247576297013288/ab077ae898cf9ca26c3f035c5ebf15a2.webp?size=1024";
-    public final String VERSION = "v1.1";
+    public final String VERSION = "v1.2";
     public final long N = 677623766066659348L;
     public final long[] LEGACY = {623984743914012712L, 364412921368936451L, 262171901521166336L, 159355703016947713L, 421281747653754881L, 677623766066659348L, 255732879525412865L, 363409330910920706L, 837523232054706197L, 543963521181024276L, 506637650615336963L};
     public final long[] STAFF = {623984743914012712L};
